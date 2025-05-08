@@ -1,0 +1,655 @@
+2025-04-19T23:57:50.199455+02:00 exp01 postfix/smtps/smtpd[458074]: connect from unknown[52.125.141.24]
+2025-04-19T23:57:50.421865+02:00 exp01 postfix/smtps/smtpd[458074]: Anonymous TLS connection established from unknown[52.125.141.24]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+2025-04-19T23:57:51.210088+02:00 exp01 dovecot: imap-login: Disconnected: Connection closed: read(size=659) failed: Connection reset by peer (no auth attempts in 6 secs): user=<>, rip=52.125.141.24, lip=172.17.111.111, TLS: read(size=659) failed: Connection reset by peer, session=<1EtYuWQ0RgU0fY0Y>
+2025-04-19T23:57:51.210527+02:00 exp01 postfix/smtps/smtpd[457998]: lost connection after EHLO from unknown[52.125.141.24]
+2025-04-19T23:57:51.210640+02:00 exp01 postfix/smtps/smtpd[457998]: disconnect from unknown[52.125.141.24] ehlo=1 commands=1
+2025-04-19T23:57:51.211299+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: read(size=659) failed: Connection reset by peer (no auth attempts in 6 secs): user=<>, rip=52.125.141.24, lip=172.17.111.111, TLS: read(size=659) failed: Connection reset by peer, session=<4lBYuWQ0UQU0fY0Y>
+2025-04-19T23:58:11.788727+02:00 exp01 postfix/smtps/smtpd[458074]: lost connection after EHLO from unknown[52.125.141.24]
+2025-04-19T23:58:11.789114+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: read(size=659) failed: Connection reset by peer (no auth attempts in 21 secs): user=<>, rip=52.125.141.24, lip=172.17.111.111, TLS: read(size=659) failed: Connection reset by peer, session=<uUmSumQ0UxE0fY0Y>
+2025-04-19T23:58:11.789212+02:00 exp01 postfix/smtps/smtpd[458074]: disconnect from unknown[52.125.141.24] ehlo=1 commands=1
+2025-04-19T23:58:11.789499+02:00 exp01 dovecot: imap-login: Disconnected: Connection closed: read(size=659) failed: Connection reset by peer (no auth attempts in 21 secs): user=<>, rip=52.125.141.24, lip=172.17.111.111, TLS: read(size=659) failed: Connection reset by peer, session=<wEuSumQ0QhE0fY0Y>
+2025-04-19T23:58:12.480310+02:00 exp01 postfix/smtps/smtpd[452769]: SSL_accept error from 64.85.222.240.reverse.socket.net[64.85.222.240]: Connection timed out
+2025-04-19T23:58:12.480738+02:00 exp01 postfix/smtps/smtpd[452769]: lost connection after CONNECT from 64.85.222.240.reverse.socket.net[64.85.222.240]
+2025-04-19T23:58:12.480808+02:00 exp01 postfix/smtps/smtpd[452769]: disconnect from 64.85.222.240.reverse.socket.net[64.85.222.240] commands=0/0
+2025-04-20T00:00:56.766382+02:00 exp01 postfix/smtpd[461516]: connect from unknown[114.142.165.102]
+2025-04-20T00:00:57.068775+02:00 exp01 postfix/smtpd[461516]: NOQUEUE: reject: RCPT from unknown[114.142.165.102]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [114.142.165.102]; from=<haps11159@example.com> to=<haps11159@example.com> proto=ESMTP helo=<[114.142.165.102]>
+2025-04-20T00:00:57.290346+02:00 exp01 postfix/smtpd[461516]: lost connection after DATA from unknown[114.142.165.102]
+2025-04-20T00:00:57.290581+02:00 exp01 postfix/smtpd[461516]: disconnect from unknown[114.142.165.102] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:01:02.175974+02:00 exp01 postfix/smtpd[461830]: connect from host-80-47-211-169.as13285.net[80.47.211.169]
+2025-04-20T00:01:03.560167+02:00 exp01 postfix/smtpd[461830]: lost connection after EHLO from host-80-47-211-169.as13285.net[80.47.211.169]
+2025-04-20T00:01:03.560312+02:00 exp01 postfix/smtpd[461830]: disconnect from host-80-47-211-169.as13285.net[80.47.211.169] ehlo=1 commands=1
+2025-04-20T00:01:07.610511+02:00 exp01 postfix/smtpd[461516]: connect from unknown[114.142.165.102]
+2025-04-20T00:01:07.884105+02:00 exp01 postfix/smtpd[461516]: NOQUEUE: reject: RCPT from unknown[114.142.165.102]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [114.142.165.102]; from=<haps11159@example.com> to=<haps11159@example.com> proto=ESMTP helo=<[114.142.165.102]>
+2025-04-20T00:01:08.087484+02:00 exp01 postfix/smtpd[461516]: lost connection after DATA from unknown[114.142.165.102]
+2025-04-20T00:01:08.087794+02:00 exp01 postfix/smtpd[461516]: disconnect from unknown[114.142.165.102] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:01:15.587510+02:00 exp01 postfix/smtpd[461516]: connect from host-80-47-211-169.as13285.net[80.47.211.169]
+2025-04-20T00:01:16.914406+02:00 exp01 dovecot: auth-worker(462080): conn unix:auth-worker (pid=437665,uid=110): auth-worker<1>: pam(info,82.151.65.155,<X7eAxWQ0poJSl0Gb>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:01:16.966200+02:00 exp01 postfix/smtpd[461516]: lost connection after EHLO from host-80-47-211-169.as13285.net[80.47.211.169]
+2025-04-20T00:01:16.966322+02:00 exp01 postfix/smtpd[461516]: disconnect from host-80-47-211-169.as13285.net[80.47.211.169] ehlo=1 commands=1
+2025-04-20T00:01:18.404995+02:00 exp01 postfix/smtpd[461830]: connect from unknown[114.142.165.102]
+2025-04-20T00:01:18.688169+02:00 exp01 postfix/smtpd[461830]: NOQUEUE: reject: RCPT from unknown[114.142.165.102]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [114.142.165.102]; from=<haps11159@example.com> to=<haps11159@example.com> proto=ESMTP helo=<[114.142.165.102]>
+2025-04-20T00:01:18.713498+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 3 secs): user=<info>, method=PLAIN, rip=82.151.65.155, lip=172.17.111.111, session=<X7eAxWQ0poJSl0Gb>, orig_user=<info@example.com>
+2025-04-20T00:01:18.905408+02:00 exp01 postfix/smtpd[461830]: lost connection after DATA from unknown[114.142.165.102]
+2025-04-20T00:01:18.905687+02:00 exp01 postfix/smtpd[461830]: disconnect from unknown[114.142.165.102] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:01:27.895924+02:00 exp01 postfix/smtpd[461516]: connect from unknown[114.142.165.102]
+2025-04-20T00:01:28.180116+02:00 exp01 postfix/smtpd[461516]: NOQUEUE: reject: RCPT from unknown[114.142.165.102]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [114.142.165.102]; from=<haps11159@example.com> to=<haps11159@example.com> proto=ESMTP helo=<[114.142.165.102]>
+2025-04-20T00:01:28.402857+02:00 exp01 postfix/smtpd[461516]: lost connection after DATA from unknown[114.142.165.102]
+2025-04-20T00:01:28.403273+02:00 exp01 postfix/smtpd[461516]: disconnect from unknown[114.142.165.102] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:01:41.945783+02:00 exp01 postfix/smtps/smtpd[462593]: connect from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47]
+2025-04-20T00:01:45.596653+02:00 exp01 postfix/smtps/smtpd[462593]: SSL_accept error from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47]: lost connection
+2025-04-20T00:01:45.597016+02:00 exp01 postfix/smtps/smtpd[462593]: lost connection after CONNECT from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47]
+2025-04-20T00:01:45.597063+02:00 exp01 postfix/smtps/smtpd[462593]: disconnect from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47] commands=0/0
+2025-04-20T00:03:51.134905+02:00 exp01 dovecot: auth-worker(465102): conn unix:auth-worker (pid=465080,uid=110): auth-worker<1>: pam(mylanda,116.203.186.216,<cNi0zmQ0HIB0y7rY>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:03:52.388210+02:00 exp01 postfix/smtps/smtpd[465163]: connect from 202-4-196-180.static.pccw-hkt.com[202.4.196.180]
+2025-04-20T00:03:52.613425+02:00 exp01 postfix/smtps/smtpd[465163]: SSL_accept error from 202-4-196-180.static.pccw-hkt.com[202.4.196.180]: lost connection
+2025-04-20T00:03:52.613826+02:00 exp01 postfix/smtps/smtpd[465163]: lost connection after CONNECT from 202-4-196-180.static.pccw-hkt.com[202.4.196.180]
+2025-04-20T00:03:52.614149+02:00 exp01 postfix/smtps/smtpd[465163]: disconnect from 202-4-196-180.static.pccw-hkt.com[202.4.196.180] commands=0/0
+2025-04-20T00:03:53.598896+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<mylanda>, method=PLAIN, rip=116.203.186.216, lip=172.17.111.111, session=<cNi0zmQ0HIB0y7rY>, orig_user=<mylanda@example.com>
+2025-04-20T00:05:09.691802+02:00 exp01 postfix/anvil[443389]: statistics: max connection rate 4/60s for (smtp:41.57.101.201) at May  5 23:56:09
+2025-04-20T00:05:09.692463+02:00 exp01 postfix/anvil[443389]: statistics: max connection count 2 for (smtps:52.125.141.24) at May  5 23:57:50
+2025-04-20T00:05:09.692543+02:00 exp01 postfix/anvil[443389]: statistics: max cache size 2 at May  6 00:01:02
+2025-04-20T00:08:45.083036+02:00 exp01 postfix/smtpd[470720]: connect from unknown[102.222.118.30]
+2025-04-20T00:08:46.369473+02:00 exp01 postfix/smtpd[470720]: NOQUEUE: reject: RCPT from unknown[102.222.118.30]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [102.222.118.30]; from=<callory@example.com> to=<callory@example.com> proto=ESMTP helo=<[102.222.118.30]>
+2025-04-20T00:08:47.061938+02:00 exp01 postfix/smtpd[470720]: lost connection after DATA from unknown[102.222.118.30]
+2025-04-20T00:08:47.062983+02:00 exp01 postfix/smtpd[470720]: disconnect from unknown[102.222.118.30] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:08:47.698986+02:00 exp01 postfix/smtpd[470720]: connect from unknown[102.222.118.30]
+2025-04-20T00:08:50.581202+02:00 exp01 postfix/smtpd[470720]: NOQUEUE: reject: RCPT from unknown[102.222.118.30]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [102.222.118.30]; from=<callory@example.com> to=<callory@example.com> proto=ESMTP helo=<[102.222.118.30]>
+2025-04-20T00:08:51.054703+02:00 exp01 postfix/smtpd[470720]: lost connection after DATA from unknown[102.222.118.30]
+2025-04-20T00:08:51.054796+02:00 exp01 postfix/smtpd[470720]: disconnect from unknown[102.222.118.30] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:08:51.740380+02:00 exp01 postfix/smtpd[470720]: connect from unknown[102.222.118.30]
+2025-04-20T00:08:52.541419+02:00 exp01 postfix/smtpd[470720]: NOQUEUE: reject: RCPT from unknown[102.222.118.30]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [102.222.118.30]; from=<callory@example.com> to=<callory@example.com> proto=ESMTP helo=<[102.222.118.30]>
+2025-04-20T00:08:52.947342+02:00 exp01 postfix/smtpd[470720]: lost connection after DATA from unknown[102.222.118.30]
+2025-04-20T00:08:52.947459+02:00 exp01 postfix/smtpd[470720]: disconnect from unknown[102.222.118.30] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:08:53.499770+02:00 exp01 postfix/smtpd[470720]: connect from unknown[102.222.118.30]
+2025-04-20T00:08:54.222438+02:00 exp01 postfix/smtpd[470720]: NOQUEUE: reject: RCPT from unknown[102.222.118.30]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [102.222.118.30]; from=<callory@example.com> to=<callory@example.com> proto=ESMTP helo=<[102.222.118.30]>
+2025-04-20T00:08:54.587851+02:00 exp01 postfix/smtpd[470720]: lost connection after DATA from unknown[102.222.118.30]
+2025-04-20T00:08:54.588255+02:00 exp01 postfix/smtpd[470720]: disconnect from unknown[102.222.118.30] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:10:03.584288+02:00 exp01 dovecot: imap-login: Disconnected: Connection closed (no auth attempts in 0 secs): user=<>, rip=65.49.1.174, lip=172.17.111.111, session=<mm//5GQ0t7FBMQGu>
+2025-04-20T00:10:16.062191+02:00 exp01 dovecot: imap-login: Disconnected: Connection closed (no auth attempts in 1 secs): user=<>, rip=65.49.1.173, lip=172.17.111.111, TLS: Connection closed, session=<E9a95WQ0e4RBMQGt>
+2025-04-20T00:10:26.825704+02:00 exp01 dovecot: imap-login: Disconnected: Too many invalid commands (no auth attempts in 0 secs): user=<>, rip=65.49.1.179, lip=172.17.111.111, session=<PhRi5mQ0R1lBMQGz>
+2025-04-20T00:10:26.952478+02:00 exp01 dovecot: imap(warrym)<437848><s+QMe2Q0RoAoY2UV>: Disconnected: Logged out in=1818 out=16665 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:10:27.165323+02:00 exp01 dovecot: imap-login: Login: user=<warrym>, method=PLAIN, rip=40.99.101.21, lip=172.17.111.111, mpid=470734, TLS, session=<m+lm5mQ0Sw8oY2UV>, orig_user=<warrym@example.com>
+2025-04-20T00:11:37.361989+02:00 exp01 dovecot: imap(splash)<439229><5g5Bf2Q0Yw4oY0kl>: Disconnected: Logged out in=1818 out=16791 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:11:37.591451+02:00 exp01 dovecot: imap-login: Login: user=<splash>, method=PLAIN, rip=40.99.73.37, lip=172.17.111.111, mpid=470749, TLS, session=<6JyZ6mQ03QQoY0kl>, orig_user=<splash@example.com>
+2025-04-20T00:12:14.774511+02:00 exp01 postfix/anvil[470721]: statistics: max connection rate 4/60s for (smtp:102.222.118.30) at May  6 00:08:53
+2025-04-20T00:12:14.775106+02:00 exp01 postfix/anvil[470721]: statistics: max connection count 1 for (smtp:102.222.118.30) at May  6 00:08:45
+2025-04-20T00:12:14.775347+02:00 exp01 postfix/anvil[470721]: statistics: max cache size 1 at May  6 00:08:45
+2025-04-20T00:14:25.157817+02:00 exp01 dovecot: imap(sandwitch3)<440153><ahklgmQ0ddYoYy+l>: Disconnected: Logged out in=1935 out=18535 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:14:25.255335+02:00 exp01 dovecot: imap-login: Login: user=<sandwitch3>, method=PLAIN, rip=40.99.47.165, lip=172.17.111.111, mpid=470765, TLS, session=<TtmX9GQ0O+MoYy+l>, orig_user=<sandwitch3@example.com>
+2025-04-20T00:14:40.898516+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46 (no auth attempts in 0 secs): user=<>, rip=124.154.91.97, lip=172.17.111.111, TLS handshaking: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46, session=<iOuG9WQ0wul8mlth>
+2025-04-20T00:14:58.193708+02:00 exp01 dovecot: imap(chickenty)<440788><PU0XhGQ0+P4oY2fF>: Disconnected: Logged out in=1935 out=17743 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:14:58.487773+02:00 exp01 dovecot: imap-login: Login: user=<chickenty>, method=PLAIN, rip=40.99.103.197, lip=172.17.111.111, mpid=470776, TLS, session=<GRGT9mQ0wE0oY2fF>, orig_user=<chickenty@example.com>
+2025-04-20T00:15:25.008637+02:00 exp01 dovecot: imap(angelina)<443700><en3WjGQ0X3A0YmmN>: Disconnected: Logged out in=1818 out=17115 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:15:25.068513+02:00 exp01 dovecot: imap-login: Login: user=<angelina>, method=PLAIN, rip=52.98.105.141, lip=172.17.111.111, mpid=470784, TLS, session=<9a4o+GQ01EY0YmmN>, orig_user=<angelina@example.com>
+2025-04-20T00:15:41.952832+02:00 exp01 dovecot: imap(villege)<444038><YOvgjWQ0vbQ0YnF1>: Disconnected: Logged out in=1818 out=16729 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:15:42.273463+02:00 exp01 dovecot: imap-login: Login: user=<villege>, method=PLAIN, rip=52.98.113.117, lip=172.17.111.111, mpid=470790, TLS, session=<FkQv+WQ0ZsA0YnF1>, orig_user=<villege@example.com>
+2025-04-20T00:15:54.314816+02:00 exp01 dovecot: imap(battman)<441960><f1x+h2Q0i0UoZBmA>: Disconnected: Logged out in=1935 out=18396 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:15:54.581209+02:00 exp01 dovecot: imap-login: Login: user=<battman>, method=PLAIN, rip=40.100.25.128, lip=172.17.111.111, mpid=470797, TLS, session=<MRfr+WQ0TUooZBmA>, orig_user=<battman@example.com>
+2025-04-20T00:16:36.857143+02:00 exp01 dovecot: imap(cape)<442772><7+MGimQ0QvA0Yi8l>: Disconnected: Logged out in=1935 out=17719 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:16:37.016956+02:00 exp01 dovecot: imap-login: Login: user=<cape>, method=PLAIN, rip=52.98.47.37, lip=172.17.111.111, mpid=470807, TLS, session=<DJRy/GQ0o9I0Yi8l>, orig_user=<cape@example.com>
+2025-04-20T00:17:53.292260+02:00 exp01 dovecot: imap(cupper)<444256><wnOLjmQ0KykoYybd>: Disconnected: Logged out in=1935 out=19479 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:17:53.492766+02:00 exp01 dovecot: imap-login: Login: user=<cupper>, method=PLAIN, rip=40.99.38.221, lip=172.17.111.111, mpid=470825, TLS, session=<i2YBAWU0byMoYybd>, orig_user=<cupper@example.com>
+2025-04-20T00:18:21.464492+02:00 exp01 dovecot: imap(leather)<444820><OuZIkGQ0Z6k0YmpF>: Disconnected: Logged out in=1935 out=16543 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:18:21.663586+02:00 exp01 dovecot: imap-login: Login: user=<leather>, method=PLAIN, rip=52.98.106.69, lip=172.17.111.111, mpid=470843, TLS, session=<JFyvAmU00AY0YmpF>, orig_user=<leather@example.com>
+2025-04-20T00:18:35.745820+02:00 exp01 postfix/smtpd[470851]: connect from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:18:37.381390+02:00 exp01 postfix/smtpd[470851]: NOQUEUE: reject: RCPT from 179-96-144-172.life.com.br[179.96.144.172]: 554 5.7.1 <179-96-144-172.life.com.br[179.96.144.172]>: Client host rejected: Fishing SPAM Named 20240413 client_p_|.life.com.br_br.; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<179-96-144-172.life.com.br>
+2025-04-20T00:18:38.953717+02:00 exp01 postfix/smtpd[470851]: lost connection after DATA from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:18:38.953864+02:00 exp01 postfix/smtpd[470851]: disconnect from 179-96-144-172.life.com.br[179.96.144.172] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:18:41.998743+02:00 exp01 postfix/smtpd[470851]: connect from unknown[102.223.33.6]
+2025-04-20T00:18:46.340006+02:00 exp01 postfix/smtpd[470856]: connect from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:18:46.850456+02:00 exp01 postfix/smtpd[470851]: NOQUEUE: reject: RCPT from unknown[102.223.33.6]: 554 5.7.1 <unknown[102.223.33.6]>: Client host rejected: Fishing SPAM 20240219 client_n_102.223.32.0/22_ke; from=<shopper@example.com> to=<shopper@example.com> proto=ESMTP helo=<[102.223.33.6]>
+2025-04-20T00:18:47.650080+02:00 exp01 postfix/smtps/smtpd[470857]: connect from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47]
+2025-04-20T00:18:48.192557+02:00 exp01 postfix/smtpd[470856]: NOQUEUE: reject: RCPT from 179-96-144-172.life.com.br[179.96.144.172]: 554 5.7.1 <179-96-144-172.life.com.br[179.96.144.172]>: Client host rejected: Fishing SPAM Named 20240413 client_p_|.life.com.br_br.; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<179-96-144-172.life.com.br>
+2025-04-20T00:18:48.597756+02:00 exp01 postfix/smtps/smtpd[470857]: SSL_accept error from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47]: lost connection
+2025-04-20T00:18:48.597975+02:00 exp01 postfix/smtps/smtpd[470857]: lost connection after CONNECT from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47]
+2025-04-20T00:18:48.598112+02:00 exp01 postfix/smtps/smtpd[470857]: disconnect from p391048-obmd01.tokyo.ocn.ne.jp[60.45.179.47] commands=0/0
+2025-04-20T00:18:49.239096+02:00 exp01 postfix/smtps/smtpd[470857]: connect from dsl-trebng12-b0489e-163.dhcp.inet.fi[176.72.158.163]
+2025-04-20T00:18:49.499477+02:00 exp01 postfix/smtpd[470851]: lost connection after DATA from unknown[102.223.33.6]
+2025-04-20T00:18:49.500521+02:00 exp01 postfix/smtpd[470851]: disconnect from unknown[102.223.33.6] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:18:50.092028+02:00 exp01 postfix/smtpd[470856]: lost connection after DATA from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:18:50.093301+02:00 exp01 postfix/smtpd[470856]: disconnect from 179-96-144-172.life.com.br[179.96.144.172] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:18:50.765692+02:00 exp01 postfix/smtps/smtpd[470857]: Anonymous TLS connection established from dsl-trebng12-b0489e-163.dhcp.inet.fi[176.72.158.163]: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+2025-04-20T00:18:53.389696+02:00 exp01 postfix/smtpd[470851]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:18:53.393584+02:00 exp01 postfix/smtpd[470856]: connect from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:18:56.130315+02:00 exp01 postfix/smtpd[470856]: NOQUEUE: reject: RCPT from 179-96-144-172.life.com.br[179.96.144.172]: 554 5.7.1 <179-96-144-172.life.com.br[179.96.144.172]>: Client host rejected: Fishing SPAM Named 20240413 client_p_|.life.com.br_br.; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<179-96-144-172.life.com.br>
+2025-04-20T00:18:56.945745+02:00 exp01 dovecot: auth-worker(470824): conn unix:auth-worker (pid=470730,uid=110): auth-worker<5>: pam(support,176.72.158.163): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:18:57.705694+02:00 exp01 postfix/smtpd[470856]: lost connection after DATA from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:18:57.705866+02:00 exp01 postfix/smtpd[470856]: disconnect from 179-96-144-172.life.com.br[179.96.144.172] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:18:58.447968+02:00 exp01 postfix/smtps/smtpd[470857]: warning: dsl-trebng12-b0489e-163.dhcp.inet.fi[176.72.158.163]: SASL LOGIN authentication failed: (reason unavailable), sasl_userferdinand=support
+2025-04-20T00:18:58.448171+02:00 exp01 postfix/smtps/smtpd[470857]: lost connection after AUTH from dsl-trebng12-b0489e-163.dhcp.inet.fi[176.72.158.163]
+2025-04-20T00:18:58.448461+02:00 exp01 postfix/smtps/smtpd[470857]: disconnect from dsl-trebng12-b0489e-163.dhcp.inet.fi[176.72.158.163] ehlo=1 auth=0/1 commands=1/2
+2025-04-20T00:18:59.813861+02:00 exp01 postfix/smtpd[470856]: connect from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:19:01.821100+02:00 exp01 postfix/smtpd[470856]: NOQUEUE: reject: RCPT from 179-96-144-172.life.com.br[179.96.144.172]: 554 5.7.1 <179-96-144-172.life.com.br[179.96.144.172]>: Client host rejected: Fishing SPAM Named 20240413 client_p_|.life.com.br_br.; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<179-96-144-172.life.com.br>
+2025-04-20T00:19:03.317078+02:00 exp01 postfix/smtpd[470856]: lost connection after DATA from 179-96-144-172.life.com.br[179.96.144.172]
+2025-04-20T00:19:03.317213+02:00 exp01 postfix/smtpd[470856]: disconnect from 179-96-144-172.life.com.br[179.96.144.172] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:19:09.307532+02:00 exp01 postfix/smtpd[470856]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:19:09.365208+02:00 exp01 postfix/smtpd[470860]: connect from unknown[85.215.146.7]
+2025-04-20T00:19:10.092287+02:00 exp01 dovecot: imap(corner)<448059><zT4xmmQ0os80YnzV>: Disconnected: Logged out in=1818 out=16665 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:19:10.426527+02:00 exp01 postfix/smtpd[470860]: disconnect from unknown[85.215.146.7] ehlo=1 auth=0/1 rset=1 quit=1 commands=3/4
+2025-04-20T00:19:10.572275+02:00 exp01 dovecot: imap-login: Login: user=<corner>, method=PLAIN, rip=52.98.124.213, lip=172.17.111.111, mpid=470861, TLS, session=<tqaZBWU0aPo0YnzV>, orig_user=<corner@example.com>
+2025-04-20T00:19:16.849752+02:00 exp01 postfix/smtpd[470860]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:19:16.905628+02:00 exp01 postfix/smtpd[470869]: connect from unknown[102.223.33.6]
+2025-04-20T00:19:19.796484+02:00 exp01 postfix/smtpd[470869]: NOQUEUE: reject: RCPT from unknown[102.223.33.6]: 554 5.7.1 <unknown[102.223.33.6]>: Client host rejected: Fishing SPAM 20240219 client_n_102.223.32.0/22_ke; from=<shopper@example.com> to=<shopper@example.com> proto=ESMTP helo=<[102.223.33.6]>
+2025-04-20T00:19:22.240199+02:00 exp01 postfix/smtpd[470869]: lost connection after DATA from unknown[102.223.33.6]
+2025-04-20T00:19:22.240355+02:00 exp01 postfix/smtpd[470869]: disconnect from unknown[102.223.33.6] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:19:24.351093+02:00 exp01 dovecot: imap(onsiro)<446052><l28FlGQ0xUc0Yj/V>: Disconnected: Logged out in=1935 out=17583 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:19:24.547692+02:00 exp01 dovecot: imap-login: Login: user=<onsiro>, method=PLAIN, rip=52.98.63.213, lip=172.17.111.111, mpid=470870, TLS, session=<G+huBmU0lz00Yj/V>, orig_user=<onsiro@example.com>
+2025-04-20T00:19:44.262452+02:00 exp01 postfix/smtpd[470869]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:19:44.314706+02:00 exp01 postfix/smtpd[470881]: connect from unknown[102.223.33.6]
+2025-04-20T00:19:48.184449+02:00 exp01 dovecot: imap(chicken)<446522><GCVylWQ0VPQ0Yik9>: Disconnected: Logged out in=1935 out=17751 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:19:48.230816+02:00 exp01 dovecot: imap-login: Login: user=<chicken>, method=PLAIN, rip=52.98.41.61, lip=172.17.111.111, mpid=470884, TLS, session=<Hk7YB2U0kXA0Yik9>, orig_user=<chicken@example.com>
+2025-04-20T00:19:48.333949+02:00 exp01 postfix/smtpd[470881]: NOQUEUE: reject: RCPT from unknown[102.223.33.6]: 554 5.7.1 <unknown[102.223.33.6]>: Client host rejected: Fishing SPAM 20240219 client_n_102.223.32.0/22_ke; from=<shopper@example.com> to=<shopper@example.com> proto=ESMTP helo=<[102.223.33.6]>
+2025-04-20T00:19:49.918706+02:00 exp01 postfix/smtpd[470881]: lost connection after DATA from unknown[102.223.33.6]
+2025-04-20T00:19:49.918853+02:00 exp01 postfix/smtpd[470881]: disconnect from unknown[102.223.33.6] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:20:01.147615+02:00 exp01 dovecot: imap(supm)<446782><SLM5lmQ00r4oY0L1>: Disconnected: Logged out in=1935 out=18375 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:20:01.844410+02:00 exp01 dovecot: imap-login: Login: user=<supm>, method=PLAIN, rip=40.99.66.245, lip=172.17.111.111, mpid=470893, TLS, session=<1tKnCGU0gxwoY0L1>, orig_user=<supm@example.com>
+2025-04-20T00:20:03.653787+02:00 exp01 postfix/smtpd[470881]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:20:03.706836+02:00 exp01 postfix/smtpd[470901]: connect from unknown[102.223.33.6]
+2025-04-20T00:20:06.523835+02:00 exp01 postfix/smtpd[470901]: NOQUEUE: reject: RCPT from unknown[102.223.33.6]: 554 5.7.1 <unknown[102.223.33.6]>: Client host rejected: Fishing SPAM 20240219 client_n_102.223.32.0/22_ke; from=<shopper@example.com> to=<shopper@example.com> proto=ESMTP helo=<[102.223.33.6]>
+2025-04-20T00:20:08.483858+02:00 exp01 postfix/smtpd[470901]: lost connection after DATA from unknown[102.223.33.6]
+2025-04-20T00:20:08.483981+02:00 exp01 postfix/smtpd[470901]: disconnect from unknown[102.223.33.6] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:20:41.705563+02:00 exp01 postfix/smtpd[470901]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:20:42.455774+02:00 exp01 postfix/smtpd[470904]: warning: hostferdinand 45-174-33-217.snettelecom.net.br does not resolve to address 45.174.33.217: Name or service not known
+2025-04-20T00:20:42.456765+02:00 exp01 postfix/smtpd[470904]: connect from unknown[45.174.33.217]
+2025-04-20T00:20:45.684456+02:00 exp01 postfix/smtpd[470904]: NOQUEUE: reject: RCPT from unknown[45.174.33.217]: 554 5.7.1 <unknown[45.174.33.217]>: Client host rejected: Fishing SPAM 20250311 client_n_45.174.32.0/22_br; from=<triangle@example.com> to=<triangle@example.com> proto=ESMTP helo=<45-174-33-217.snettelecom.net.br>
+2025-04-20T00:20:46.021939+02:00 exp01 dovecot: imap(tt2025)<447607><ERrSmGQ0V000YjWt>: Disconnected: Logged out in=4271 out=39663 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:20:46.233938+02:00 exp01 dovecot: imap-login: Login: user=<tt2025>, method=PLAIN, rip=52.98.53.173, lip=172.17.111.111, mpid=470905, TLS, session=<g1xNC2U0Jsc0YjWt>, orig_user=<tt2025@example.com>
+2025-04-20T00:20:48.224930+02:00 exp01 postfix/smtpd[470904]: lost connection after DATA from unknown[45.174.33.217]
+2025-04-20T00:20:48.225081+02:00 exp01 postfix/smtpd[470904]: disconnect from unknown[45.174.33.217] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:20:51.862562+02:00 exp01 postfix/smtps/smtpd[470914]: connect from ev-esr1-72-49-126-67.fuse.net[72.49.126.67]
+2025-04-20T00:20:53.867486+02:00 exp01 postfix/smtps/smtpd[470914]: Anonymous TLS connection established from ev-esr1-72-49-126-67.fuse.net[72.49.126.67]: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+2025-04-20T00:21:00.382556+02:00 exp01 dovecot: auth-worker(470824): conn unix:auth-worker (pid=470730,uid=110): auth-worker<16>: pam(realize,72.49.126.67): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:21:02.385520+02:00 exp01 postfix/smtps/smtpd[470914]: warning: ev-esr1-72-49-126-67.fuse.net[72.49.126.67]: SASL LOGIN authentication failed: (reason unavailable), sasl_userferdinand=realize
+2025-04-20T00:21:02.609296+02:00 exp01 postfix/smtpd[470904]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:21:02.639941+02:00 exp01 postfix/smtps/smtpd[470914]: lost connection after AUTH from ev-esr1-72-49-126-67.fuse.net[72.49.126.67]
+2025-04-20T00:21:02.640064+02:00 exp01 postfix/smtps/smtpd[470914]: disconnect from ev-esr1-72-49-126-67.fuse.net[72.49.126.67] ehlo=1 auth=0/1 commands=1/2
+2025-04-20T00:21:02.663827+02:00 exp01 postfix/smtpd[470916]: warning: hostferdinand 45-174-33-217.snettelecom.net.br does not resolve to address 45.174.33.217: Name or service not known
+2025-04-20T00:21:02.663956+02:00 exp01 postfix/smtpd[470916]: connect from unknown[45.174.33.217]
+2025-04-20T00:21:07.636922+02:00 exp01 postfix/smtpd[470916]: NOQUEUE: reject: RCPT from unknown[45.174.33.217]: 554 5.7.1 <unknown[45.174.33.217]>: Client host rejected: Fishing SPAM 20250311 client_n_45.174.32.0/22_br; from=<triangle@example.com> to=<triangle@example.com> proto=ESMTP helo=<45-174-33-217.snettelecom.net.br>
+2025-04-20T00:21:09.517497+02:00 exp01 postfix/smtpd[470916]: lost connection after DATA from unknown[45.174.33.217]
+2025-04-20T00:21:09.517649+02:00 exp01 postfix/smtpd[470916]: disconnect from unknown[45.174.33.217] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:21:15.236296+02:00 exp01 postfix/smtpd[470916]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:21:15.287633+02:00 exp01 postfix/smtpd[470919]: warning: hostferdinand 45-174-33-217.snettelecom.net.br does not resolve to address 45.174.33.217: Name or service not known
+2025-04-20T00:21:15.287736+02:00 exp01 postfix/smtpd[470919]: connect from unknown[45.174.33.217]
+2025-04-20T00:21:21.518980+02:00 exp01 postfix/smtpd[470919]: NOQUEUE: reject: RCPT from unknown[45.174.33.217]: 554 5.7.1 <unknown[45.174.33.217]>: Client host rejected: Fishing SPAM 20250311 client_n_45.174.32.0/22_br; from=<triangle@example.com> to=<triangle@example.com> proto=ESMTP helo=<45-174-33-217.snettelecom.net.br>
+2025-04-20T00:21:23.584618+02:00 exp01 postfix/smtpd[470919]: lost connection after DATA from unknown[45.174.33.217]
+2025-04-20T00:21:23.585289+02:00 exp01 postfix/smtpd[470919]: disconnect from unknown[45.174.33.217] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:21:25.207018+02:00 exp01 postfix/smtpd[470919]: warning: hostferdinand 45-174-33-217.snettelecom.net.br does not resolve to address 45.174.33.217: Name or service not known
+2025-04-20T00:21:25.207155+02:00 exp01 postfix/smtpd[470919]: connect from unknown[45.174.33.217]
+2025-04-20T00:21:27.541238+02:00 exp01 postfix/smtpd[470920]: connect from unknown[191.84.21.173]
+2025-04-20T00:21:29.307311+02:00 exp01 dovecot: imap(rodney)<448463><kYdlm2Q0QiUoY1Tl>: Disconnected: Logged out in=2015 out=18317 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:21:29.557568+02:00 exp01 dovecot: imap-login: Login: user=<rodney>, method=PLAIN, rip=40.99.84.229, lip=172.17.111.111, mpid=470921, TLS, session=<UVfiDWU0qYooY1Tl>, orig_user=<rodney@example.com>
+2025-04-20T00:21:29.951205+02:00 exp01 postfix/smtpd[470919]: NOQUEUE: reject: RCPT from unknown[45.174.33.217]: 554 5.7.1 <unknown[45.174.33.217]>: Client host rejected: Fishing SPAM 20250311 client_n_45.174.32.0/22_br; from=<triangle@example.com> to=<triangle@example.com> proto=ESMTP helo=<45-174-33-217.snettelecom.net.br>
+2025-04-20T00:21:30.771608+02:00 exp01 postfix/smtpd[470920]: NOQUEUE: reject: RCPT from unknown[191.84.21.173]: 554 5.7.1 <unknown[191.84.21.173]>: Client host rejected: Fishing SPAM 20240219 client_n_191.84.0.0/15_ar; from=<invillage@example.com> to=<invillage@example.com> proto=ESMTP helo=<[191.84.21.173]>
+2025-04-20T00:21:32.048905+02:00 exp01 postfix/smtpd[470919]: lost connection after DATA from unknown[45.174.33.217]
+2025-04-20T00:21:32.049098+02:00 exp01 postfix/smtpd[470919]: disconnect from unknown[45.174.33.217] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:21:32.146333+02:00 exp01 postfix/smtpd[470920]: lost connection after DATA from unknown[191.84.21.173]
+2025-04-20T00:21:32.146446+02:00 exp01 postfix/smtpd[470920]: disconnect from unknown[191.84.21.173] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:21:41.557539+02:00 exp01 postfix/smtpd[470919]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:21:41.560051+02:00 exp01 postfix/smtpd[470920]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:21:41.613664+02:00 exp01 postfix/smtpd[470929]: connect from unknown[191.84.21.173]
+2025-04-20T00:21:43.891257+02:00 exp01 postfix/smtpd[470929]: NOQUEUE: reject: RCPT from unknown[191.84.21.173]: 554 5.7.1 <unknown[191.84.21.173]>: Client host rejected: Fishing SPAM 20240219 client_n_191.84.0.0/15_ar; from=<invillage@example.com> to=<invillage@example.com> proto=ESMTP helo=<[191.84.21.173]>
+2025-04-20T00:21:44.553948+02:00 exp01 dovecot: imap(fistman)<448779><0vdknGQ0B9ooYybl>: Disconnected: Logged out in=1935 out=17487 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:21:44.786507+02:00 exp01 dovecot: imap-login: Login: user=<fistman>, method=PLAIN, rip=40.99.38.229, lip=172.17.111.111, mpid=470930, TLS, session=<+BHKDmU0NxcoYybl>, orig_user=<fistman@example.com>
+2025-04-20T00:21:46.145971+02:00 exp01 postfix/smtpd[470938]: connect from unknown[103.52.63.250]
+2025-04-20T00:21:46.637292+02:00 exp01 postfix/smtpd[470929]: lost connection after DATA from unknown[191.84.21.173]
+2025-04-20T00:21:46.637825+02:00 exp01 postfix/smtpd[470929]: disconnect from unknown[191.84.21.173] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:21:47.947182+02:00 exp01 postfix/smtpd[470938]: NOQUEUE: reject: RCPT from unknown[103.52.63.250]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [103.52.63.250]; from=<kenbridge@example.com> to=<kenbridge@example.com> proto=ESMTP helo=<[103.52.63.210]>
+2025-04-20T00:21:50.827526+02:00 exp01 postfix/smtpd[470938]: lost connection after DATA from unknown[103.52.63.250]
+2025-04-20T00:21:50.827678+02:00 exp01 postfix/smtpd[470938]: disconnect from unknown[103.52.63.250] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:21:56.349487+02:00 exp01 postfix/smtpd[470929]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:21:56.352493+02:00 exp01 postfix/smtpd[470938]: connect from unknown[191.84.21.173]
+2025-04-20T00:21:59.618783+02:00 exp01 postfix/smtpd[470938]: NOQUEUE: reject: RCPT from unknown[191.84.21.173]: 554 5.7.1 <unknown[191.84.21.173]>: Client host rejected: Fishing SPAM 20240219 client_n_191.84.0.0/15_ar; from=<invillage@example.com> to=<invillage@example.com> proto=ESMTP helo=<[191.84.21.173]>
+2025-04-20T00:22:02.017283+02:00 exp01 postfix/smtpd[470938]: lost connection after DATA from unknown[191.84.21.173]
+2025-04-20T00:22:02.022063+02:00 exp01 postfix/smtpd[470938]: disconnect from unknown[191.84.21.173] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:22:06.029989+02:00 exp01 postfix/smtpd[470938]: connect from unknown[191.84.21.173]
+2025-04-20T00:22:09.288114+02:00 exp01 postfix/smtpd[470938]: NOQUEUE: reject: RCPT from unknown[191.84.21.173]: 554 5.7.1 <unknown[191.84.21.173]>: Client host rejected: Fishing SPAM 20240219 client_n_191.84.0.0/15_ar; from=<invillage@example.com> to=<invillage@example.com> proto=ESMTP helo=<[191.84.21.173]>
+2025-04-20T00:22:10.822382+02:00 exp01 postfix/smtpd[470938]: lost connection after DATA from unknown[191.84.21.173]
+2025-04-20T00:22:10.822562+02:00 exp01 postfix/smtpd[470938]: disconnect from unknown[191.84.21.173] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:22:19.093241+02:00 exp01 postfix/smtpd[470938]: connect from unknown[103.52.63.250]
+2025-04-20T00:22:19.870975+02:00 exp01 postfix/smtpd[470938]: NOQUEUE: reject: RCPT from unknown[103.52.63.250]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [103.52.63.250]; from=<kenbridge@example.com> to=<kenbridge@example.com> proto=ESMTP helo=<[103.52.63.210]>
+2025-04-20T00:22:20.578693+02:00 exp01 postfix/smtpd[470938]: lost connection after DATA from unknown[103.52.63.250]
+2025-04-20T00:22:20.578854+02:00 exp01 postfix/smtpd[470938]: disconnect from unknown[103.52.63.250] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:22:32.977815+02:00 exp01 dovecot: imap(mountenr)<449700><hqc8n2Q0jWYoY2WF>: Disconnected: Logged out in=1935 out=17623 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:22:33.267955+02:00 exp01 dovecot: imap-login: Login: user=<mountenr>, method=PLAIN, rip=40.99.101.133, lip=172.17.111.111, mpid=470940, TLS, session=<D4auEWU0ySkoY2WF>, orig_user=<mountenr@example.com>
+2025-04-20T00:22:36.614566+02:00 exp01 postfix/smtpd[470938]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:22:38.413613+02:00 exp01 postfix/smtpd[470948]: connect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:22:40.687849+02:00 exp01 postfix/smtpd[470948]: NOQUEUE: reject: RCPT from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]: 554 5.7.1 <r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]>: Client host rejected: Fishing SPAM Named 20240219 client_p_dialup.mobile.ancel.net.uy_uy.; from=<hinting@example.com> to=<hinting@example.com> proto=ESMTP helo=<r167-108-215-59.dialup.mobile.ancel.net.uy>
+2025-04-20T00:22:41.702596+02:00 exp01 postfix/smtpd[470948]: lost connection after DATA from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:22:41.702762+02:00 exp01 postfix/smtpd[470948]: disconnect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:22:44.210210+02:00 exp01 postfix/smtpd[470948]: connect from unknown[103.52.63.250]
+2025-04-20T00:22:47.386507+02:00 exp01 postfix/smtpd[470948]: NOQUEUE: reject: RCPT from unknown[103.52.63.250]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [103.52.63.250]; from=<kenbridge@example.com> to=<kenbridge@example.com> proto=ESMTP helo=<[103.52.63.210]>
+2025-04-20T00:22:49.614822+02:00 exp01 postfix/smtpd[470948]: lost connection after DATA from unknown[103.52.63.250]
+2025-04-20T00:22:49.615163+02:00 exp01 postfix/smtpd[470948]: disconnect from unknown[103.52.63.250] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:22:58.490419+02:00 exp01 postfix/smtpd[470948]: connect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:23:01.351942+02:00 exp01 postfix/smtpd[470948]: NOQUEUE: reject: RCPT from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]: 554 5.7.1 <r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]>: Client host rejected: Fishing SPAM Named 20240219 client_p_dialup.mobile.ancel.net.uy_uy.; from=<hinting@example.com> to=<hinting@example.com> proto=ESMTP helo=<r167-108-215-59.dialup.mobile.ancel.net.uy>
+2025-04-20T00:23:02.810312+02:00 exp01 postfix/smtpd[470948]: lost connection after DATA from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:23:02.810436+02:00 exp01 postfix/smtpd[470948]: disconnect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:23:08.224376+02:00 exp01 postfix/smtpd[470948]: connect from unknown[103.52.63.250]
+2025-04-20T00:23:09.862213+02:00 exp01 postfix/smtpd[470948]: NOQUEUE: reject: RCPT from unknown[103.52.63.250]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [103.52.63.250]; from=<kenbridge@example.com> to=<kenbridge@example.com> proto=ESMTP helo=<[103.52.63.210]>
+2025-04-20T00:23:10.522993+02:00 exp01 postfix/smtpd[470948]: lost connection after DATA from unknown[103.52.63.250]
+2025-04-20T00:23:10.523454+02:00 exp01 postfix/smtpd[470948]: disconnect from unknown[103.52.63.250] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:23:13.460767+02:00 exp01 dovecot: imap(helther)<450470><XMCooWQ0sJUoY0QV>: Disconnected: Logged out in=1935 out=17495 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:23:13.819860+02:00 exp01 dovecot: imap-login: Login: user=<helther>, method=PLAIN, rip=40.99.68.21, lip=172.17.111.111, mpid=470987, TLS, session=<rpoYFGU0zxAoY0QV>, orig_user=<helther@example.com>
+2025-04-20T00:23:16.202570+02:00 exp01 postfix/smtpd[470948]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:23:16.256337+02:00 exp01 postfix/smtpd[470995]: connect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:23:19.707804+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]: 554 5.7.1 <r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]>: Client host rejected: Fishing SPAM Named 20240219 client_p_dialup.mobile.ancel.net.uy_uy.; from=<hinting@example.com> to=<hinting@example.com> proto=ESMTP helo=<r167-108-215-59.dialup.mobile.ancel.net.uy>
+2025-04-20T00:23:21.712637+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:23:21.712785+02:00 exp01 postfix/smtpd[470995]: disconnect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:23:33.193763+02:00 exp01 postfix/smtpd[470995]: connect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:23:35.717393+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]: 554 5.7.1 <r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]>: Client host rejected: Fishing SPAM Named 20240219 client_p_dialup.mobile.ancel.net.uy_uy.; from=<hinting@example.com> to=<hinting@example.com> proto=ESMTP helo=<r167-108-215-59.dialup.mobile.ancel.net.uy>
+2025-04-20T00:23:37.215922+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59]
+2025-04-20T00:23:37.216084+02:00 exp01 postfix/smtpd[470995]: disconnect from r167-108-215-59.dialup.mobile.ancel.net.uy[167.108.215.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:23:52.373648+02:00 exp01 dovecot: imap(tony33)<451264><1pkPpGQ0vK8oZBmA>: Disconnected: Logged out in=1935 out=17719 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:23:52.587358+02:00 exp01 dovecot: imap-login: Login: user=<tony33>, method=PLAIN, rip=40.100.25.128, lip=172.17.111.111, mpid=470996, TLS, session=<BdtoFmU0pqgoZBmA>, orig_user=<tony33@example.com>
+2025-04-20T00:23:57.414764+02:00 exp01 dovecot: imap(mansion)<453625><rNRoq2Q09100YjTt>: Disconnected: Logged out in=2570 out=24587 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:23:58.094718+02:00 exp01 dovecot: imap-login: Login: user=<mansion>, method=PLAIN, rip=52.98.52.237, lip=172.17.111.111, mpid=471002, TLS, session=<Oem8FmU0i140YjTt>, orig_user=<mansion@example.com>
+2025-04-20T00:24:05.244187+02:00 exp01 postfix/smtpd[470995]: connect from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:06.796667+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from ox9o95.static.otenet.gr[212.205.237.83]: 554 5.7.1 <ox9o95.static.otenet.gr[212.205.237.83]>: Client host rejected: Fishing SPAM Named 20250503 client_p_|static.otenet.gr_gr.; from=<sannrise@example.com> to=<sannrise@example.com> proto=ESMTP helo=<ox9o95.static.otenet.gr>
+2025-04-20T00:24:07.343015+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:07.343429+02:00 exp01 postfix/smtpd[470995]: disconnect from ox9o95.static.otenet.gr[212.205.237.83] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:09.715010+02:00 exp01 postfix/smtpd[470995]: connect from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:10.638223+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from ox9o95.static.otenet.gr[212.205.237.83]: 554 5.7.1 <ox9o95.static.otenet.gr[212.205.237.83]>: Client host rejected: Fishing SPAM Named 20250503 client_p_|static.otenet.gr_gr.; from=<sannrise@example.com> to=<sannrise@example.com> proto=ESMTP helo=<ox9o95.static.otenet.gr>
+2025-04-20T00:24:11.350372+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:11.350493+02:00 exp01 postfix/smtpd[470995]: disconnect from ox9o95.static.otenet.gr[212.205.237.83] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:12.134974+02:00 exp01 postfix/smtpd[470995]: connect from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:13.415846+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from ox9o95.static.otenet.gr[212.205.237.83]: 554 5.7.1 <ox9o95.static.otenet.gr[212.205.237.83]>: Client host rejected: Fishing SPAM Named 20250503 client_p_|static.otenet.gr_gr.; from=<sannrise@example.com> to=<sannrise@example.com> proto=ESMTP helo=<ox9o95.static.otenet.gr>
+2025-04-20T00:24:13.842075+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:13.842526+02:00 exp01 postfix/smtpd[470995]: disconnect from ox9o95.static.otenet.gr[212.205.237.83] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:14.616769+02:00 exp01 postfix/smtpd[470995]: connect from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:15.617964+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from ox9o95.static.otenet.gr[212.205.237.83]: 554 5.7.1 <ox9o95.static.otenet.gr[212.205.237.83]>: Client host rejected: Fishing SPAM Named 20250503 client_p_|static.otenet.gr_gr.; from=<sannrise@example.com> to=<sannrise@example.com> proto=ESMTP helo=<ox9o95.static.otenet.gr>
+2025-04-20T00:24:15.987737+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from ox9o95.static.otenet.gr[212.205.237.83]
+2025-04-20T00:24:15.987905+02:00 exp01 postfix/smtpd[470995]: disconnect from ox9o95.static.otenet.gr[212.205.237.83] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:26.370249+02:00 exp01 postfix/smtpd[470995]: connect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:29.030021+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]: 554 5.7.1 <din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]>: Client host rejected: Fishing SPAM Named 20250504 client_p_|comunitel.net_es.; from=<bfields@example.com> to=<bfields@example.com> proto=ESMTP helo=<din-216-225-231-77.ipcom.comunitel.net>
+2025-04-20T00:24:30.310895+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:30.311440+02:00 exp01 postfix/smtpd[470995]: disconnect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:38.029587+02:00 exp01 postfix/smtpd[470995]: connect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:41.240858+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]: 554 5.7.1 <din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]>: Client host rejected: Fishing SPAM Named 20250504 client_p_|comunitel.net_es.; from=<bfields@example.com> to=<bfields@example.com> proto=ESMTP helo=<din-216-225-231-77.ipcom.comunitel.net>
+2025-04-20T00:24:41.703462+02:00 exp01 postfix/smtpd[471008]: warning: hostferdinand customer-190-107-105-29.megacable.com.ar does not resolve to address 190.107.105.29: Name or service not known
+2025-04-20T00:24:41.703585+02:00 exp01 postfix/smtpd[471008]: connect from unknown[190.107.105.29]
+2025-04-20T00:24:42.503726+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:42.503846+02:00 exp01 postfix/smtpd[470995]: disconnect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:43.774229+02:00 exp01 postfix/smtpd[471008]: NOQUEUE: reject: RCPT from unknown[190.107.105.29]: 554 5.7.1 <unknown[190.107.105.29]>: Client host rejected: Fishing SPAM 20241206 client_n_190.107.96.0/20_ar; from=<tony33@example.com> to=<tony33@example.com> proto=ESMTP helo=<customer-190-107-105-29.megacable.com.ar>
+2025-04-20T00:24:45.542553+02:00 exp01 postfix/smtpd[471008]: lost connection after DATA from unknown[190.107.105.29]
+2025-04-20T00:24:45.542697+02:00 exp01 postfix/smtpd[471008]: disconnect from unknown[190.107.105.29] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:46.844394+02:00 exp01 postfix/smtpd[470995]: connect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:50.405971+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]: 554 5.7.1 <din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]>: Client host rejected: Fishing SPAM Named 20250504 client_p_|comunitel.net_es.; from=<bfields@example.com> to=<bfields@example.com> proto=ESMTP helo=<din-216-225-231-77.ipcom.comunitel.net>
+2025-04-20T00:24:51.588985+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:51.589110+02:00 exp01 postfix/smtpd[470995]: disconnect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:56.005305+02:00 exp01 postfix/smtpd[471008]: connect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:58.007631+02:00 exp01 postfix/smtpd[471008]: NOQUEUE: reject: RCPT from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]: 554 5.7.1 <din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]>: Client host rejected: Fishing SPAM Named 20250504 client_p_|comunitel.net_es.; from=<bfields@example.com> to=<bfields@example.com> proto=ESMTP helo=<din-216-225-231-77.ipcom.comunitel.net>
+2025-04-20T00:24:58.368551+02:00 exp01 postfix/smtpd[471008]: lost connection after DATA from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216]
+2025-04-20T00:24:58.369267+02:00 exp01 postfix/smtpd[471008]: disconnect from din-216-225-231-77.ipcom.comunitel.net[77.231.225.216] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:24:58.806602+02:00 exp01 postfix/smtpd[470995]: warning: hostferdinand customer-190-107-105-29.megacable.com.ar does not resolve to address 190.107.105.29: Name or service not known
+2025-04-20T00:24:58.806722+02:00 exp01 postfix/smtpd[470995]: connect from unknown[190.107.105.29]
+2025-04-20T00:25:01.614840+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from unknown[190.107.105.29]: 554 5.7.1 <unknown[190.107.105.29]>: Client host rejected: Fishing SPAM 20241206 client_n_190.107.96.0/20_ar; from=<tony33@example.com> to=<tony33@example.com> proto=ESMTP helo=<customer-190-107-105-29.megacable.com.ar>
+2025-04-20T00:25:03.002893+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from unknown[190.107.105.29]
+2025-04-20T00:25:03.003018+02:00 exp01 postfix/smtpd[470995]: disconnect from unknown[190.107.105.29] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:25:13.772248+02:00 exp01 postfix/smtpd[471008]: warning: hostferdinand customer-190-107-105-29.megacable.com.ar does not resolve to address 190.107.105.29: Name or service not known
+2025-04-20T00:25:13.772384+02:00 exp01 postfix/smtpd[471008]: connect from unknown[190.107.105.29]
+2025-04-20T00:25:19.406286+02:00 exp01 postfix/smtpd[471008]: NOQUEUE: reject: RCPT from unknown[190.107.105.29]: 554 5.7.1 <unknown[190.107.105.29]>: Client host rejected: Fishing SPAM 20241206 client_n_190.107.96.0/20_ar; from=<tony33@example.com> to=<tony33@example.com> proto=ESMTP helo=<customer-190-107-105-29.megacable.com.ar>
+2025-04-20T00:25:20.548209+02:00 exp01 dovecot: auth-worker(471010): conn unix:auth-worker (pid=470730,uid=110): auth-worker<1>: pam(fortune,138.197.124.163,<HlGLG2U0lLyKxXyj>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:25:22.037057+02:00 exp01 postfix/smtpd[471008]: lost connection after DATA from unknown[190.107.105.29]
+2025-04-20T00:25:22.037268+02:00 exp01 postfix/smtpd[471008]: disconnect from unknown[190.107.105.29] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:25:22.200854+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<fortune>, method=PLAIN, rip=138.197.124.163, lip=172.17.111.111, session=<HlGLG2U0lLyKxXyj>, orig_user=<fortune@example.net>
+2025-04-20T00:25:28.958745+02:00 exp01 dovecot: auth-worker(471010): conn unix:auth-worker (pid=470730,uid=110): auth-worker<2>: pam(fortune,138.197.124.163,<ZUHVG2U0YJ2KxXyj>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:25:30.461331+02:00 exp01 dovecot: imap-login: Disconnected: Connection closed (auth failed, 1 attempts in 7 secs): user=<fortune>, method=PLAIN, rip=138.197.124.163, lip=172.17.111.111, session=<ZUHVG2U0YJ2KxXyj>, orig_user=<fortune@example.net>
+2025-04-20T00:25:30.848014+02:00 exp01 postfix/smtpd[470995]: warning: hostferdinand customer-190-107-105-29.megacable.com.ar does not resolve to address 190.107.105.29: Name or service not known
+2025-04-20T00:25:30.848193+02:00 exp01 postfix/smtpd[470995]: connect from unknown[190.107.105.29]
+2025-04-20T00:25:33.497623+02:00 exp01 postfix/smtpd[470995]: NOQUEUE: reject: RCPT from unknown[190.107.105.29]: 554 5.7.1 <unknown[190.107.105.29]>: Client host rejected: Fishing SPAM 20241206 client_n_190.107.96.0/20_ar; from=<tony33@example.com> to=<tony33@example.com> proto=ESMTP helo=<customer-190-107-105-29.megacable.com.ar>
+2025-04-20T00:25:35.111354+02:00 exp01 postfix/smtpd[470995]: lost connection after DATA from unknown[190.107.105.29]
+2025-04-20T00:25:35.111491+02:00 exp01 postfix/smtpd[470995]: disconnect from unknown[190.107.105.29] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:25:38.565304+02:00 exp01 dovecot: imap(hotwater)<455561><kZdvsWQ0ejgoY479>: Disconnected: Logged out in=1818 out=18062 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:25:39.693557+02:00 exp01 dovecot: imap-login: Login: user=<hotwater>, method=PLAIN, rip=40.99.142.253, lip=172.17.111.111, mpid=471013, TLS, session=<5i/LHGU08s0oY479>, orig_user=<hotwater@example.com>
+2025-04-20T00:26:32.110993+02:00 exp01 postfix/smtpd[471008]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:26:32.114376+02:00 exp01 postfix/smtpd[470995]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:26:32.278049+02:00 exp01 postfix/smtpd[471023]: connect from unknown[94.55.235.54]
+2025-04-20T00:26:35.752433+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[94.55.235.54]: 554 5.7.1 <unknown[94.55.235.54]>: Client host rejected: Fishing SPAM 20240618 client_n_94.54.0.0/15_tr; from=<tanrath@example.com> to=<tanrath@example.com> proto=ESMTP helo=<[94.55.235.54]>
+2025-04-20T00:26:36.219191+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[94.55.235.54]
+2025-04-20T00:26:36.219886+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[94.55.235.54] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:26:38.094479+02:00 exp01 postfix/smtpd[471023]: connect from unknown[94.55.235.54]
+2025-04-20T00:26:40.506773+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[94.55.235.54]: 554 5.7.1 <unknown[94.55.235.54]>: Client host rejected: Fishing SPAM 20240618 client_n_94.54.0.0/15_tr; from=<tanrath@example.com> to=<tanrath@example.com> proto=ESMTP helo=<[94.55.235.54]>
+2025-04-20T00:26:41.424451+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[94.55.235.54]
+2025-04-20T00:26:41.425184+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[94.55.235.54] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:26:42.757341+02:00 exp01 postfix/smtpd[471023]: connect from unknown[94.55.235.54]
+2025-04-20T00:26:44.822047+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[94.55.235.54]: 554 5.7.1 <unknown[94.55.235.54]>: Client host rejected: Fishing SPAM 20240618 client_n_94.54.0.0/15_tr; from=<tanrath@example.com> to=<tanrath@example.com> proto=ESMTP helo=<[94.55.235.54]>
+2025-04-20T00:26:45.724344+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[94.55.235.54]
+2025-04-20T00:26:45.724882+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[94.55.235.54] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:26:46.391897+02:00 exp01 postfix/smtpd[471023]: connect from unknown[94.55.235.54]
+2025-04-20T00:26:47.132575+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[94.55.235.54]: 554 5.7.1 <unknown[94.55.235.54]>: Client host rejected: Fishing SPAM 20240618 client_n_94.54.0.0/15_tr; from=<tanrath@example.com> to=<tanrath@example.com> proto=ESMTP helo=<[94.55.235.54]>
+2025-04-20T00:26:47.610644+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[94.55.235.54]
+2025-04-20T00:26:47.610793+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[94.55.235.54] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:26:58.371596+02:00 exp01 postfix/smtpd[471023]: connect from unknown[190.187.245.50]
+2025-04-20T00:27:02.648899+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46 (no auth attempts in 0 secs): user=<>, rip=124.154.91.97, lip=172.17.111.111, TLS handshaking: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46, session=<BCC9IWU0goJ8mlth>
+2025-04-20T00:27:03.339618+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[190.187.245.50]: 554 5.7.1 <unknown[190.187.245.50]>: Client host rejected: Fishing SPAM 20240219 client_n_190.187.128.0/17_pe; from=<smile@example.com> to=<smile@example.com> proto=ESMTP helo=<[190.187.245.50]>
+2025-04-20T00:27:05.260712+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[190.187.245.50]
+2025-04-20T00:27:05.261111+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[190.187.245.50] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:08.977672+02:00 exp01 postfix/smtpd[471023]: connect from unknown[190.187.245.50]
+2025-04-20T00:27:14.788585+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[190.187.245.50]: 554 5.7.1 <unknown[190.187.245.50]>: Client host rejected: Fishing SPAM 20240219 client_n_190.187.128.0/17_pe; from=<smile@example.com> to=<smile@example.com> proto=ESMTP helo=<[190.187.245.50]>
+2025-04-20T00:27:16.715371+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[190.187.245.50]
+2025-04-20T00:27:16.715526+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[190.187.245.50] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:21.133052+02:00 exp01 postfix/smtpd[471023]: connect from unknown[190.187.245.50]
+2025-04-20T00:27:22.857731+02:00 exp01 postfix/smtpd[471026]: connect from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:25.385856+02:00 exp01 postfix/smtpd[471026]: NOQUEUE: reject: RCPT from 46-13-41-11.customers.tmcz.cz[46.13.41.11]: 554 5.7.1 <46-13-41-11.customers.tmcz.cz[46.13.41.11]>: Client host rejected: Fishing SPAM Named 20240411 client_p_|.customers.tmcz.cz_cz.; from=<j0327@example.com> to=<j0327@example.com> proto=ESMTP helo=<46-13-41-11.customers.tmcz.cz>
+2025-04-20T00:27:25.933589+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from unknown[190.187.245.50]: 554 5.7.1 <unknown[190.187.245.50]>: Client host rejected: Fishing SPAM 20240219 client_n_190.187.128.0/17_pe; from=<smile@example.com> to=<smile@example.com> proto=ESMTP helo=<[190.187.245.50]>
+2025-04-20T00:27:27.295590+02:00 exp01 postfix/smtpd[471026]: lost connection after DATA from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:27.295770+02:00 exp01 postfix/smtpd[471026]: disconnect from 46-13-41-11.customers.tmcz.cz[46.13.41.11] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:29.215430+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from unknown[190.187.245.50]
+2025-04-20T00:27:29.215616+02:00 exp01 postfix/smtpd[471023]: disconnect from unknown[190.187.245.50] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:29.986759+02:00 exp01 postfix/smtpd[471026]: connect from unknown[190.187.245.50]
+2025-04-20T00:27:31.470297+02:00 exp01 postfix/smtpd[471023]: connect from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:32.329912+02:00 exp01 postfix/smtpd[471026]: NOQUEUE: reject: RCPT from unknown[190.187.245.50]: 554 5.7.1 <unknown[190.187.245.50]>: Client host rejected: Fishing SPAM 20240219 client_n_190.187.128.0/17_pe; from=<smile@example.com> to=<smile@example.com> proto=ESMTP helo=<[190.187.245.50]>
+2025-04-20T00:27:34.399767+02:00 exp01 postfix/smtpd[471026]: lost connection after DATA from unknown[190.187.245.50]
+2025-04-20T00:27:34.400035+02:00 exp01 postfix/smtpd[471026]: disconnect from unknown[190.187.245.50] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:35.538713+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from 46-13-41-11.customers.tmcz.cz[46.13.41.11]: 554 5.7.1 <46-13-41-11.customers.tmcz.cz[46.13.41.11]>: Client host rejected: Fishing SPAM Named 20240411 client_p_|.customers.tmcz.cz_cz.; from=<j0327@example.com> to=<j0327@example.com> proto=ESMTP helo=<46-13-41-11.customers.tmcz.cz>
+2025-04-20T00:27:37.088768+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:37.088888+02:00 exp01 postfix/smtpd[471023]: disconnect from 46-13-41-11.customers.tmcz.cz[46.13.41.11] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:40.135854+02:00 exp01 postfix/smtpd[471026]: connect from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:43.234483+02:00 exp01 postfix/smtpd[471026]: NOQUEUE: reject: RCPT from 46-13-41-11.customers.tmcz.cz[46.13.41.11]: 554 5.7.1 <46-13-41-11.customers.tmcz.cz[46.13.41.11]>: Client host rejected: Fishing SPAM Named 20240411 client_p_|.customers.tmcz.cz_cz.; from=<j0327@example.com> to=<j0327@example.com> proto=ESMTP helo=<46-13-41-11.customers.tmcz.cz>
+2025-04-20T00:27:44.204730+02:00 exp01 postfix/smtpd[471026]: lost connection after DATA from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:44.205140+02:00 exp01 postfix/smtpd[471026]: disconnect from 46-13-41-11.customers.tmcz.cz[46.13.41.11] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:27:46.028900+02:00 exp01 postfix/smtpd[471023]: connect from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:49.188330+02:00 exp01 postfix/smtpd[471023]: NOQUEUE: reject: RCPT from 46-13-41-11.customers.tmcz.cz[46.13.41.11]: 554 5.7.1 <46-13-41-11.customers.tmcz.cz[46.13.41.11]>: Client host rejected: Fishing SPAM Named 20240411 client_p_|.customers.tmcz.cz_cz.; from=<j0327@example.com> to=<j0327@example.com> proto=ESMTP helo=<46-13-41-11.customers.tmcz.cz>
+2025-04-20T00:27:49.621392+02:00 exp01 postfix/smtpd[471023]: lost connection after DATA from 46-13-41-11.customers.tmcz.cz[46.13.41.11]
+2025-04-20T00:27:49.621848+02:00 exp01 postfix/smtpd[471023]: disconnect from 46-13-41-11.customers.tmcz.cz[46.13.41.11] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:28:35.654888+02:00 exp01 postfix/anvil[470852]: statistics: max connection rate 4/60s for (smtp:179.96.144.172) at May  6 00:18:59
+2025-04-20T00:28:35.655233+02:00 exp01 postfix/anvil[470852]: statistics: max connection count 1 for (smtp:179.96.144.172) at May  6 00:18:35
+2025-04-20T00:28:35.655303+02:00 exp01 postfix/anvil[470852]: statistics: max cache size 4 at May  6 00:19:09
+2025-04-20T00:32:03.335154+02:00 exp01 postfix/smtpd[471032]: connect from unknown[94.99.39.141]
+2025-04-20T00:32:45.712357+02:00 exp01 postfix/smtpd[471037]: connect from unknown[94.99.39.141]
+2025-04-20T00:33:27.823322+02:00 exp01 postfix/smtpd[471039]: connect from unknown[94.99.39.141]
+2025-04-20T00:34:18.091256+02:00 exp01 postfix/smtpd[471040]: connect from unknown[94.99.39.141]
+2025-04-20T00:34:34.735373+02:00 exp01 dovecot: auth-worker(471045): conn unix:auth-worker (pid=471044,uid=110): auth-worker<1>: pam(manuellygi,74.50.123.17,<dqCNPGU0BJRKMnsR>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:34:36.382989+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: read(size=983) failed: Connection reset by peer (auth failed, 1 attempts in 4 secs): user=<manuellygi>, method=PLAIN, rip=74.50.123.17, lip=172.17.111.111, session=<dqCNPGU0BJRKMnsR>, orig_user=<manuellygi@example.com>
+2025-04-20T00:34:58.233016+02:00 exp01 dovecot: pop3-login: Login: user=<shopper>, method=PLAIN, rip=180.59.69.133, lip=172.17.111.111, mpid=471047, TLS, session=<g9QVPmU0G2u0O0WF>, orig_user=<shopper>
+2025-04-20T00:35:03.974419+02:00 exp01 postfix/smtpd[471055]: connect from 31-208-25-185.cust.bredband2.com[31.208.25.185]
+2025-04-20T00:35:05.747646+02:00 exp01 postfix/smtpd[471055]: lost connection after CONNECT from 31-208-25-185.cust.bredband2.com[31.208.25.185]
+2025-04-20T00:35:05.748026+02:00 exp01 postfix/smtpd[471055]: disconnect from 31-208-25-185.cust.bredband2.com[31.208.25.185] commands=0/0
+2025-04-20T00:36:14.386900+02:00 exp01 postfix/smtpd[471055]: connect from unknown[45.229.114.106]
+2025-04-20T00:36:19.210747+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[45.229.114.106]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [45.229.114.106]; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<[45.229.114.106]>
+2025-04-20T00:36:22.368642+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[45.229.114.106]
+2025-04-20T00:36:22.368775+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[45.229.114.106] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:37:03.441906+02:00 exp01 postfix/smtpd[471032]: timeout after CONNECT from unknown[94.99.39.141]
+2025-04-20T00:37:03.452875+02:00 exp01 postfix/smtpd[471032]: disconnect from unknown[94.99.39.141] commands=0/0
+2025-04-20T00:37:03.497777+02:00 exp01 postfix/smtpd[471055]: warning: hostferdinand 168-197-52-208.radarinternet.com.br does not resolve to address 168.197.52.208: Name or service not known
+2025-04-20T00:37:03.497877+02:00 exp01 postfix/smtpd[471055]: connect from unknown[168.197.52.208]
+2025-04-20T00:37:07.374990+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[168.197.52.208]: 554 5.7.1 <unknown[168.197.52.208]>: Client host rejected: Fishing SPAM 20240726 client_n_168.197.52.0/22_br; from=<jimmy@example.com> to=<jimmy@example.com> proto=ESMTP helo=<168-197-52-208.radarinternet.com.br>
+2025-04-20T00:37:07.808998+02:00 exp01 postfix/smtps/smtpd[471061]: connect from c-68-46-148-180.hsd1.mi.comcast.net[68.46.148.180]
+2025-04-20T00:37:08.132458+02:00 exp01 postfix/smtps/smtpd[471061]: Anonymous TLS connection established from c-68-46-148-180.hsd1.mi.comcast.net[68.46.148.180]: TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits) key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+2025-04-20T00:37:11.239318+02:00 exp01 dovecot: auth-worker(471063): conn unix:auth-worker (pid=471062,uid=110): auth-worker<1>: pam(callory,68.46.148.180): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:37:12.816537+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[168.197.52.208]
+2025-04-20T00:37:12.816623+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[168.197.52.208] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:37:13.242297+02:00 exp01 postfix/smtps/smtpd[471061]: warning: c-68-46-148-180.hsd1.mi.comcast.net[68.46.148.180]: SASL PLAIN authentication failed: (reason unavailable), sasl_userferdinand=callory
+2025-04-20T00:37:13.242954+02:00 exp01 postfix/smtps/smtpd[471061]: lost connection after AUTH from c-68-46-148-180.hsd1.mi.comcast.net[68.46.148.180]
+2025-04-20T00:37:13.243003+02:00 exp01 postfix/smtps/smtpd[471061]: disconnect from c-68-46-148-180.hsd1.mi.comcast.net[68.46.148.180] ehlo=1 auth=0/1 commands=1/2
+2025-04-20T00:37:26.719424+02:00 exp01 dovecot: auth-worker(471063): conn unix:auth-worker (pid=471062,uid=110): auth-worker<2>: pam(test,2.56.109.136,<NezTRmU0wrICOG2I>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:37:28.537690+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<test>, method=PLAIN, rip=2.56.109.136, lip=172.17.111.111, session=<NezTRmU0wrICOG2I>, orig_user=<test@example.com>
+2025-04-20T00:37:37.154425+02:00 exp01 postfix/smtpd[471032]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:37:37.157180+02:00 exp01 postfix/smtpd[471055]: connect from unknown[45.229.114.106]
+2025-04-20T00:37:44.676975+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[45.229.114.106]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [45.229.114.106]; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<[45.229.114.106]>
+2025-04-20T00:37:45.787510+02:00 exp01 postfix/smtpd[471037]: timeout after CONNECT from unknown[94.99.39.141]
+2025-04-20T00:37:45.787782+02:00 exp01 postfix/smtpd[471037]: disconnect from unknown[94.99.39.141] commands=0/0
+2025-04-20T00:37:49.035300+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[45.229.114.106]
+2025-04-20T00:37:49.035487+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[45.229.114.106] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:37:50.103914+02:00 exp01 postfix/smtpd[471065]: connect from unknown[60.245.107.16]
+2025-04-20T00:37:50.300514+02:00 exp01 postfix/smtpd[471065]: NOQUEUE: reject: RCPT from unknown[60.245.107.16]: 554 5.7.1 <unknown[60.245.107.16]>: Client host rejected: Fishing SPAM 20240412 client_n_60.245.96.0/19_tw; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<[60.245.107.16]>
+2025-04-20T00:37:50.455845+02:00 exp01 postfix/smtpd[471065]: lost connection after DATA from unknown[60.245.107.16]
+2025-04-20T00:37:50.455947+02:00 exp01 postfix/smtpd[471065]: disconnect from unknown[60.245.107.16] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:37:51.522520+02:00 exp01 postfix/smtpd[471037]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:38:01.527890+02:00 exp01 postfix/smtpd[471055]: connect from unknown[60.245.107.16]
+2025-04-20T00:38:02.492238+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[60.245.107.16]: 554 5.7.1 <unknown[60.245.107.16]>: Client host rejected: Fishing SPAM 20240412 client_n_60.245.96.0/19_tw; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<[60.245.107.16]>
+2025-04-20T00:38:02.661313+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[60.245.107.16]
+2025-04-20T00:38:02.661421+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[60.245.107.16] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:38:07.086350+02:00 exp01 postfix/smtpd[471055]: warning: hostferdinand 168-197-52-208.radarinternet.com.br does not resolve to address 168.197.52.208: Name or service not known
+2025-04-20T00:38:07.086436+02:00 exp01 postfix/smtpd[471055]: connect from unknown[168.197.52.208]
+2025-04-20T00:38:10.869373+02:00 exp01 postfix/smtpd[471065]: connect from unknown[60.245.107.16]
+2025-04-20T00:38:11.012229+02:00 exp01 postfix/smtpd[471065]: NOQUEUE: reject: RCPT from unknown[60.245.107.16]: 554 5.7.1 <unknown[60.245.107.16]>: Client host rejected: Fishing SPAM 20240412 client_n_60.245.96.0/19_tw; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<[60.245.107.16]>
+2025-04-20T00:38:11.173892+02:00 exp01 postfix/smtpd[471065]: lost connection after DATA from unknown[60.245.107.16]
+2025-04-20T00:38:11.173967+02:00 exp01 postfix/smtpd[471065]: disconnect from unknown[60.245.107.16] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:38:15.564522+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[168.197.52.208]: 554 5.7.1 <unknown[168.197.52.208]>: Client host rejected: Fishing SPAM 20240726 client_n_168.197.52.0/22_br; from=<jimmy@example.com> to=<jimmy@example.com> proto=ESMTP helo=<168-197-52-208.radarinternet.com.br>
+2025-04-20T00:38:21.064049+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[168.197.52.208]
+2025-04-20T00:38:21.064190+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[168.197.52.208] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:38:21.396830+02:00 exp01 postfix/smtpd[471065]: connect from unknown[60.245.107.16]
+2025-04-20T00:38:21.546356+02:00 exp01 postfix/smtpd[471065]: NOQUEUE: reject: RCPT from unknown[60.245.107.16]: 554 5.7.1 <unknown[60.245.107.16]>: Client host rejected: Fishing SPAM 20240412 client_n_60.245.96.0/19_tw; from=<tony39@example.com> to=<tony39@example.com> proto=ESMTP helo=<[60.245.107.16]>
+2025-04-20T00:38:21.719688+02:00 exp01 postfix/smtpd[471065]: lost connection after DATA from unknown[60.245.107.16]
+2025-04-20T00:38:21.720448+02:00 exp01 postfix/smtpd[471065]: disconnect from unknown[60.245.107.16] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:38:27.928212+02:00 exp01 postfix/smtpd[471039]: timeout after CONNECT from unknown[94.99.39.141]
+2025-04-20T00:38:27.928357+02:00 exp01 postfix/smtpd[471039]: disconnect from unknown[94.99.39.141] commands=0/0
+2025-04-20T00:38:31.734309+02:00 exp01 postfix/smtpd[471055]: connect from unknown[45.229.114.106]
+2025-04-20T00:38:35.505764+02:00 exp01 dovecot: auth-worker(471067): conn unix:auth-worker (pid=471062,uid=110): auth-worker<1>: pam(sincerely,52.67.224.205,<mmfwSmU0Pd40Q+DN>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:38:41.448436+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[45.229.114.106]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [45.229.114.106]; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<[45.229.114.106]>
+2025-04-20T00:38:43.532910+02:00 exp01 dovecot: auth-worker(471067): conn unix:auth-worker (pid=471062,uid=110): auth-worker<2>: pam(sincerely,52.67.224.205,<mmfwSmU0Pd40Q+DN>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:38:43.540648+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[45.229.114.106]
+2025-04-20T00:38:43.540749+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[45.229.114.106] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:38:51.460705+02:00 exp01 dovecot: auth-worker(471067): conn unix:auth-worker (pid=471062,uid=110): auth-worker<3>: pam(sincerely,52.67.224.205,<mmfwSmU0Pd40Q+DN>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:38:53.308249+02:00 exp01 postfix/smtpd[471065]: warning: hostferdinand 168-197-52-208.radarinternet.com.br does not resolve to address 168.197.52.208: Name or service not known
+2025-04-20T00:38:53.308883+02:00 exp01 postfix/smtpd[471065]: connect from unknown[168.197.52.208]
+2025-04-20T00:38:53.748219+02:00 exp01 dovecot: imap-login: Disconnected: Connection closed (auth failed, 3 attempts in 20 secs): user=<sincerely>, method=PLAIN, rip=52.67.224.205, lip=172.17.111.111, TLS: Connection closed, session=<mmfwSmU0Pd40Q+DN>, orig_user=<sincerely@example.com>
+2025-04-20T00:39:04.434536+02:00 exp01 postfix/smtpd[471065]: NOQUEUE: reject: RCPT from unknown[168.197.52.208]: 554 5.7.1 <unknown[168.197.52.208]>: Client host rejected: Fishing SPAM 20240726 client_n_168.197.52.0/22_br; from=<jimmy@example.com> to=<jimmy@example.com> proto=ESMTP helo=<168-197-52-208.radarinternet.com.br>
+2025-04-20T00:39:11.971845+02:00 exp01 postfix/smtpd[471039]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:39:11.977318+02:00 exp01 postfix/smtpd[471055]: warning: hostferdinand device-177-55-68-248.fibralink.net.br does not resolve to address 177.55.68.248: Name or service not known
+2025-04-20T00:39:11.977409+02:00 exp01 postfix/smtpd[471055]: connect from unknown[177.55.68.248]
+2025-04-20T00:39:12.565832+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[177.55.68.248]: 554 5.7.1 <unknown[177.55.68.248]>: Client host rejected: Fishing SPAM 20240616 client_n_177.55.64.0/20_br; from=<11295841@example.com> to=<11295841@example.com> proto=ESMTP helo=<device-177-55-68-248.fibralink.net.br>
+2025-04-20T00:39:12.973486+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[177.55.68.248]
+2025-04-20T00:39:12.973597+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[177.55.68.248] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:39:13.049737+02:00 exp01 postfix/smtpd[471065]: lost connection after DATA from unknown[168.197.52.208]
+2025-04-20T00:39:13.049850+02:00 exp01 postfix/smtpd[471065]: disconnect from unknown[168.197.52.208] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:39:18.172836+02:00 exp01 postfix/smtpd[471040]: timeout after CONNECT from unknown[94.99.39.141]
+2025-04-20T00:39:18.173012+02:00 exp01 postfix/smtpd[471040]: disconnect from unknown[94.99.39.141] commands=0/0
+2025-04-20T00:39:23.811206+02:00 exp01 postfix/smtpd[471055]: connect from unknown[45.229.114.106]
+2025-04-20T00:39:28.235173+02:00 exp01 postfix/smtpd[471065]: warning: hostferdinand device-177-55-68-248.fibralink.net.br does not resolve to address 177.55.68.248: Name or service not known
+2025-04-20T00:39:28.235288+02:00 exp01 postfix/smtpd[471065]: connect from unknown[177.55.68.248]
+2025-04-20T00:39:28.838357+02:00 exp01 postfix/smtpd[471065]: NOQUEUE: reject: RCPT from unknown[177.55.68.248]: 554 5.7.1 <unknown[177.55.68.248]>: Client host rejected: Fishing SPAM 20240616 client_n_177.55.64.0/20_br; from=<11295841@example.com> to=<11295841@example.com> proto=ESMTP helo=<device-177-55-68-248.fibralink.net.br>
+2025-04-20T00:39:29.312242+02:00 exp01 postfix/smtpd[471065]: lost connection after DATA from unknown[177.55.68.248]
+2025-04-20T00:39:29.312338+02:00 exp01 postfix/smtpd[471065]: disconnect from unknown[177.55.68.248] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:39:32.641588+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[45.229.114.106]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [45.229.114.106]; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<[45.229.114.106]>
+2025-04-20T00:39:34.862380+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[45.229.114.106]
+2025-04-20T00:39:34.862482+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[45.229.114.106] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:39:41.512657+02:00 exp01 postfix/smtpd[471040]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:39:41.515913+02:00 exp01 postfix/smtpd[471065]: warning: hostferdinand 168-197-52-208.radarinternet.com.br does not resolve to address 168.197.52.208: Name or service not known
+2025-04-20T00:39:41.515980+02:00 exp01 postfix/smtpd[471065]: connect from unknown[168.197.52.208]
+2025-04-20T00:39:43.643064+02:00 exp01 postfix/smtpd[471055]: warning: hostferdinand device-177-55-68-248.fibralink.net.br does not resolve to address 177.55.68.248: Name or service not known
+2025-04-20T00:39:43.643358+02:00 exp01 postfix/smtpd[471055]: connect from unknown[177.55.68.248]
+2025-04-20T00:39:44.402781+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[177.55.68.248]: 554 5.7.1 <unknown[177.55.68.248]>: Client host rejected: Fishing SPAM 20240616 client_n_177.55.64.0/20_br; from=<11295841@example.com> to=<11295841@example.com> proto=ESMTP helo=<device-177-55-68-248.fibralink.net.br>
+2025-04-20T00:39:44.820353+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[177.55.68.248]
+2025-04-20T00:39:44.820505+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[177.55.68.248] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:39:48.192075+02:00 exp01 postfix/smtpd[471065]: NOQUEUE: reject: RCPT from unknown[168.197.52.208]: 554 5.7.1 <unknown[168.197.52.208]>: Client host rejected: Fishing SPAM 20240726 client_n_168.197.52.0/22_br; from=<jimmy@example.com> to=<jimmy@example.com> proto=ESMTP helo=<168-197-52-208.radarinternet.com.br>
+2025-04-20T00:39:53.395035+02:00 exp01 postfix/smtpd[471065]: lost connection after DATA from unknown[168.197.52.208]
+2025-04-20T00:39:53.395241+02:00 exp01 postfix/smtpd[471065]: disconnect from unknown[168.197.52.208] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:39:54.717372+02:00 exp01 postfix/smtpd[471055]: warning: hostferdinand device-177-55-68-248.fibralink.net.br does not resolve to address 177.55.68.248: Name or service not known
+2025-04-20T00:39:54.717483+02:00 exp01 postfix/smtpd[471055]: connect from unknown[177.55.68.248]
+2025-04-20T00:39:55.479437+02:00 exp01 postfix/smtpd[471055]: NOQUEUE: reject: RCPT from unknown[177.55.68.248]: 554 5.7.1 <unknown[177.55.68.248]>: Client host rejected: Fishing SPAM 20240616 client_n_177.55.64.0/20_br; from=<11295841@example.com> to=<11295841@example.com> proto=ESMTP helo=<device-177-55-68-248.fibralink.net.br>
+2025-04-20T00:39:55.948528+02:00 exp01 postfix/smtpd[471055]: lost connection after DATA from unknown[177.55.68.248]
+2025-04-20T00:39:55.948644+02:00 exp01 postfix/smtpd[471055]: disconnect from unknown[177.55.68.248] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:41:27.983737+02:00 exp01 postfix/smtpd[471065]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:41:27.986214+02:00 exp01 postfix/smtpd[471055]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:41:28.178114+02:00 exp01 postfix/smtpd[471073]: connect from 117.176.225.35.bc.googleusercontent.com[35.225.176.117]
+2025-04-20T00:41:28.792665+02:00 exp01 postfix/smtpd[471073]: Anonymous TLS connection established from 117.176.225.35.bc.googleusercontent.com[35.225.176.117]: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+2025-04-20T00:41:29.419362+02:00 exp01 postfix/smtpd[471073]: NOQUEUE: reject: RCPT from 117.176.225.35.bc.googleusercontent.com[35.225.176.117]: 450 4.7.1 <117.176.225.35.bc.googleusercontent.com[35.225.176.117]>: Client host rejected: S25R check, be patient [r3]; from=<info47@cocospg.com> to=<eddie@example.com> proto=ESMTP helo=<instance-20250503-165451>
+2025-04-20T00:41:29.661350+02:00 exp01 postfix/smtpd[471073]: disconnect from 117.176.225.35.bc.googleusercontent.com[35.225.176.117] ehlo=2 starttls=1 mail=1 rcpt=0/1 data=0/1 rset=1 quit=1 commands=6/8
+2025-04-20T00:42:03.695651+02:00 exp01 postfix/anvil[471033]: statistics: max connection rate 4/60s for (smtp:60.245.107.16) at May  6 00:38:21
+2025-04-20T00:42:03.698646+02:00 exp01 postfix/anvil[471033]: statistics: max connection count 4 for (smtp:94.99.39.141) at May  6 00:34:18
+2025-04-20T00:42:03.698699+02:00 exp01 postfix/anvil[471033]: statistics: max cache size 5 at May  6 00:37:50
+2025-04-20T00:42:26.109809+02:00 exp01 dovecot: imap(warrym)<470734><m+lm5mQ0Sw8oY2UV>: Disconnected: Logged out in=2015 out=18317 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:42:26.257540+02:00 exp01 dovecot: imap-login: Login: user=<warrym>, method=PLAIN, rip=40.99.101.21, lip=172.17.111.111, mpid=471080, TLS, session=<aPfJWGU037woY2UV>, orig_user=<warrym@example.com>
+2025-04-20T00:43:46.415450+02:00 exp01 dovecot: imap(splash)<470749><6JyZ6mQ03QQoY0kl>: Disconnected: Logged out in=1935 out=17791 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:43:46.793157+02:00 exp01 dovecot: imap-login: Login: user=<splash>, method=PLAIN, rip=40.99.73.37, lip=172.17.111.111, mpid=471138, TLS, session=</OaWXWU0IhMoY0kl>, orig_user=<splash@example.com>
+2025-04-20T00:44:58.366090+02:00 exp01 dovecot: pop3(shopper)<471047><g9QVPmU0G2u0O0WF>: Disconnected: Inactivity - no input for 600 secs top=0/0, retr=0/0, del=0/1772, size=157438581
+2025-04-20T00:44:58.647112+02:00 exp01 dovecot: imap(chickenty)<470776><GRGT9mQ0wE0oY2fF>: Disconnected: Logged out in=1818 out=16703 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:44:59.363087+02:00 exp01 dovecot: imap-login: Login: user=<chickenty>, method=PLAIN, rip=40.99.103.197, lip=172.17.111.111, mpid=471152, TLS, session=<rCnqYWU0h0EoY2fF>, orig_user=<chickenty@example.com>
+2025-04-20T00:45:04.406607+02:00 exp01 dovecot: auth-worker(471151): conn unix:auth-worker (pid=471078,uid=110): auth-worker<3>: pam(info,47.76.51.147,<X4UdYmU0qp0vTDOT>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:45:06.463569+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<info>, method=PLAIN, rip=47.76.51.147, lip=172.17.111.111, session=<X4UdYmU0qp0vTDOT>, orig_user=<info@example.com>
+2025-04-20T00:45:30.151804+02:00 exp01 postfix/smtpd[471163]: connect from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:45:31.053418+02:00 exp01 postfix/smtpd[471163]: NOQUEUE: reject: RCPT from i59F45839.versanet.de[89.244.88.57]: 554 5.7.1 <i59F45839.versanet.de[89.244.88.57]>: Client host rejected: Fishing SPAM Named 20240412 client_p_|.versanet.de_de.; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<i59F45839.versanet.de>
+2025-04-20T00:45:31.449864+02:00 exp01 postfix/smtpd[471163]: lost connection after DATA from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:45:31.450605+02:00 exp01 postfix/smtpd[471163]: disconnect from i59F45839.versanet.de[89.244.88.57] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:45:53.675776+02:00 exp01 postfix/smtpd[471163]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:45:53.730315+02:00 exp01 postfix/smtpd[471168]: connect from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:45:54.528686+02:00 exp01 postfix/smtpd[471168]: NOQUEUE: reject: RCPT from i59F45839.versanet.de[89.244.88.57]: 554 5.7.1 <i59F45839.versanet.de[89.244.88.57]>: Client host rejected: Fishing SPAM Named 20240412 client_p_|.versanet.de_de.; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<i59F45839.versanet.de>
+2025-04-20T00:45:55.015156+02:00 exp01 postfix/smtpd[471168]: lost connection after DATA from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:45:55.015537+02:00 exp01 postfix/smtpd[471168]: disconnect from i59F45839.versanet.de[89.244.88.57] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:46:09.574414+02:00 exp01 postfix/smtpd[471168]: connect from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:46:10.246376+02:00 exp01 postfix/smtpd[471168]: NOQUEUE: reject: RCPT from i59F45839.versanet.de[89.244.88.57]: 554 5.7.1 <i59F45839.versanet.de[89.244.88.57]>: Client host rejected: Fishing SPAM Named 20240412 client_p_|.versanet.de_de.; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<i59F45839.versanet.de>
+2025-04-20T00:46:10.725581+02:00 exp01 postfix/smtpd[471168]: lost connection after DATA from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:46:10.725672+02:00 exp01 postfix/smtpd[471168]: disconnect from i59F45839.versanet.de[89.244.88.57] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:46:21.070228+02:00 exp01 postfix/smtpd[471168]: connect from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:46:22.081213+02:00 exp01 postfix/smtpd[471168]: NOQUEUE: reject: RCPT from i59F45839.versanet.de[89.244.88.57]: 554 5.7.1 <i59F45839.versanet.de[89.244.88.57]>: Client host rejected: Fishing SPAM Named 20240412 client_p_|.versanet.de_de.; from=<action@example.com> to=<action@example.com> proto=ESMTP helo=<i59F45839.versanet.de>
+2025-04-20T00:46:22.677851+02:00 exp01 postfix/smtpd[471168]: lost connection after DATA from i59F45839.versanet.de[89.244.88.57]
+2025-04-20T00:46:22.678017+02:00 exp01 postfix/smtpd[471168]: disconnect from i59F45839.versanet.de[89.244.88.57] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:46:24.481901+02:00 exp01 dovecot: imap(sandwitch3)<470765><TtmX9GQ0O+MoYy+l>: Disconnected: Logged out in=2015 out=19075 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:46:24.555004+02:00 exp01 dovecot: imap-login: Login: user=<sandwitch3>, method=PLAIN, rip=40.99.47.165, lip=172.17.111.111, mpid=471171, TLS, session=<ZyH+ZmU0S3ooYy+l>, orig_user=<sandwitch3@example.com>
+2025-04-20T00:47:24.830739+02:00 exp01 dovecot: imap(angelina)<470784><9a4o+GQ01EY0YmmN>: Disconnected: Logged out in=1935 out=18191 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:47:24.914833+02:00 exp01 dovecot: imap-login: Login: user=<angelina>, method=PLAIN, rip=52.98.105.141, lip=172.17.111.111, mpid=471184, TLS, session=<kyCXamU04oU0YmmN>, orig_user=<angelina@example.com>
+2025-04-20T00:47:41.261611+02:00 exp01 dovecot: imap(villege)<470790><FkQv+WQ0ZsA0YnF1>: Disconnected: Logged out in=1935 out=17719 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:47:41.545357+02:00 exp01 dovecot: imap-login: Login: user=<villege>, method=PLAIN, rip=52.98.113.117, lip=172.17.111.111, mpid=471192, TLS, session=<3QuVa2U0H600YnF1>, orig_user=<villege@example.com>
+2025-04-20T00:47:53.096771+02:00 exp01 dovecot: imap(battman)<470797><MRfr+WQ0TUooZBmA>: Disconnected: Logged out in=2133 out=20016 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:47:53.449700+02:00 exp01 dovecot: imap-login: Login: user=<battman>, method=PLAIN, rip=40.100.25.128, lip=172.17.111.111, mpid=471200, TLS, session=<07NKbGU0q0UoZBmA>, orig_user=<battman@example.com>
+2025-04-20T00:47:53.479462+02:00 exp01 dovecot: imap(cupper)<470825><i2YBAWU0byMoYybd>: Disconnected: Logged out in=1818 out=18266 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:47:53.738913+02:00 exp01 dovecot: imap-login: Login: user=<cupper>, method=PLAIN, rip=40.99.38.221, lip=172.17.111.111, mpid=471201, TLS, session=<CR1PbGU0j9ooYybd>, orig_user=<cupper@example.com>
+2025-04-20T00:48:36.557951+02:00 exp01 dovecot: imap(cape)<470807><DJRy/GQ0o9I0Yi8l>: Disconnected: Logged out in=1935 out=17711 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:48:36.774162+02:00 exp01 dovecot: imap-login: Login: user=<cape>, method=PLAIN, rip=52.98.47.37, lip=172.17.111.111, mpid=471214, TLS, session=</sffbmU0Gtg0Yi8l>, orig_user=<cape@example.com>
+2025-04-20T00:49:25.294643+02:00 exp01 dovecot: imap(onsiro)<470870><G+huBmU0lz00Yj/V>: Disconnected: Logged out in=1936 out=17525 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:49:25.674163+02:00 exp01 dovecot: imap-login: Login: user=<onsiro>, method=PLAIN, rip=52.98.63.213, lip=172.17.111.111, mpid=471226, TLS, session=<yvTJcWU0VCA0Yj/V>, orig_user=<onsiro@example.com>
+2025-04-20T00:49:42.791937+02:00 exp01 postfix/anvil[471164]: statistics: max connection rate 4/60s for (smtp:89.244.88.57) at May  6 00:46:21
+2025-04-20T00:49:42.793201+02:00 exp01 postfix/anvil[471164]: statistics: max connection count 1 for (smtp:89.244.88.57) at May  6 00:45:30
+2025-04-20T00:49:42.793287+02:00 exp01 postfix/anvil[471164]: statistics: max cache size 1 at May  6 00:45:30
+2025-04-20T00:49:43.058821+02:00 exp01 dovecot: auth-worker(471183): conn unix:auth-worker (pid=471078,uid=110): auth-worker<13>: pam(info,49.232.53.226,<Ws20cmU0ps0x6DXi>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:49:45.116626+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<info>, method=PLAIN, rip=49.232.53.226, lip=172.17.111.111, session=<Ws20cmU0ps0x6DXi>, orig_user=<info@example.com>
+2025-04-20T00:49:49.060694+02:00 exp01 dovecot: imap(chicken)<470884><Hk7YB2U0kXA0Yik9>: Disconnected: Logged out in=1818 out=16703 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:49:49.106638+02:00 exp01 dovecot: imap-login: Login: user=<chicken>, method=PLAIN, rip=52.98.41.61, lip=172.17.111.111, mpid=471235, TLS, session=<bXwvc2U0mOc0Yik9>, orig_user=<chicken@example.com>
+2025-04-20T00:50:14.995200+02:00 exp01 dovecot: auth-worker(471183): conn unix:auth-worker (pid=471078,uid=110): auth-worker<16>: pam(info,217.36.125.12,<lzmYdGU0jqvZJH0M>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:50:16.756116+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<info>, method=PLAIN, rip=217.36.125.12, lip=172.17.111.111, session=<lzmYdGU0jqvZJH0M>, orig_user=<info@example.com>
+2025-04-20T00:50:20.492702+02:00 exp01 dovecot: imap(leather)<470843><JFyvAmU00AY0YmpF>: Disconnected: Logged out in=1935 out=16527 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:50:21.200171+02:00 exp01 dovecot: imap-login: Login: user=<leather>, method=PLAIN, rip=52.98.106.69, lip=172.17.111.111, mpid=471245, TLS, session=<JjYZdWU0QqU0YmpF>, orig_user=<leather@example.com>
+2025-04-20T00:50:49.838682+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46 (no auth attempts in 0 secs): user=<>, rip=124.154.91.97, lip=172.17.111.111, TLS handshaking: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46, session=<QlLOdmU0QK18mlth>
+2025-04-20T00:51:08.626735+02:00 exp01 dovecot: imap(corner)<470861><tqaZBWU0aPo0YnzV>: Disconnected: Logged out in=2015 out=18322 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:51:08.863405+02:00 exp01 dovecot: imap-login: Login: user=<corner>, method=PLAIN, rip=52.98.124.213, lip=172.17.111.111, mpid=471257, TLS, session=<7Xvwd2U0Fh40YnzV>, orig_user=<corner@example.com>
+2025-04-20T00:51:55.638319+02:00 exp01 postfix/smtpd[471269]: connect from scan-46d.shadowserver.org[64.62.197.80]
+2025-04-20T00:51:55.760414+02:00 exp01 postfix/smtpd[471269]: lost connection after CONNECT from scan-46d.shadowserver.org[64.62.197.80]
+2025-04-20T00:51:55.760843+02:00 exp01 postfix/smtpd[471269]: disconnect from scan-46d.shadowserver.org[64.62.197.80] commands=0/0
+2025-04-20T00:52:00.667766+02:00 exp01 dovecot: imap(supm)<470893><1tKnCGU0gxwoY0L1>: Disconnected: Logged out in=1935 out=18367 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:52:01.349809+02:00 exp01 dovecot: imap-login: Login: user=<supm>, method=PLAIN, rip=40.99.66.245, lip=172.17.111.111, mpid=471271, TLS, session=<9l8Re2U0fw4oY0L1>, orig_user=<supm@example.com>
+2025-04-20T00:52:06.158918+02:00 exp01 postfix/smtpd[471269]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:52:06.211858+02:00 exp01 postfix/smtpd[471279]: connect from scan-46b.shadowserver.org[64.62.197.78]
+2025-04-20T00:52:06.551934+02:00 exp01 postfix/smtpd[471279]: Anonymous TLS connection established from scan-46b.shadowserver.org[64.62.197.78]: TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits)
+2025-04-20T00:52:06.663692+02:00 exp01 postfix/smtpd[471279]: lost connection after STARTTLS from scan-46b.shadowserver.org[64.62.197.78]
+2025-04-20T00:52:06.664207+02:00 exp01 postfix/smtpd[471279]: disconnect from scan-46b.shadowserver.org[64.62.197.78] starttls=1 commands=1
+2025-04-20T00:52:45.046378+02:00 exp01 dovecot: imap(tt2025)<470905><g1xNC2U0Jsc0YjWt>: Disconnected: Logged out in=4271 out=39663 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:52:45.175266+02:00 exp01 dovecot: imap-login: Login: user=<tt2025>, method=PLAIN, rip=52.98.53.173, lip=172.17.111.111, mpid=471283, TLS, session=<ixOufWU03hQ0YjWt>, orig_user=<tt2025@example.com>
+2025-04-20T00:53:29.188663+02:00 exp01 dovecot: imap(rodney)<470921><UVfiDWU0qYooY1Tl>: Disconnected: Logged out in=2053 out=18730 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:53:29.434992+02:00 exp01 dovecot: imap-login: Login: user=<rodney>, method=PLAIN, rip=40.99.84.229, lip=172.17.111.111, mpid=471295, TLS, session=<c15RgGU0g7ooY1Tl>, orig_user=<rodney@example.com>
+2025-04-20T00:53:31.068093+02:00 exp01 postfix/smtpd[471279]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:53:31.120520+02:00 exp01 postfix/smtpd[471303]: connect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:53:33.537792+02:00 exp01 postfix/smtpd[471303]: NOQUEUE: reject: RCPT from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]: 554 5.7.1 <net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]>: Client host rejected: Fishing SPAM Named 20240220 client_p_cust.vodafonedsl.it_it.; from=<atay@example.com> to=<atay@example.com> proto=ESMTP helo=<net-109-117-50-253.cust.vodafonedsl.it>
+2025-04-20T00:53:34.734645+02:00 exp01 postfix/smtpd[471303]: lost connection after DATA from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:53:34.734769+02:00 exp01 postfix/smtpd[471303]: disconnect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:53:45.124113+02:00 exp01 dovecot: imap(fistman)<470930><+BHKDmU0NxcoYybl>: Disconnected: Logged out in=1935 out=17487 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:53:45.411937+02:00 exp01 dovecot: imap-login: Login: user=<fistman>, method=PLAIN, rip=40.99.38.229, lip=172.17.111.111, mpid=471305, TLS, session=<Z35EgWU024koYybl>, orig_user=<fistman@example.com>
+2025-04-20T00:53:49.180843+02:00 exp01 postfix/smtpd[471303]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:53:49.233460+02:00 exp01 postfix/smtpd[471313]: connect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:53:51.419535+02:00 exp01 postfix/smtpd[471313]: NOQUEUE: reject: RCPT from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]: 554 5.7.1 <net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]>: Client host rejected: Fishing SPAM Named 20240220 client_p_cust.vodafonedsl.it_it.; from=<atay@example.com> to=<atay@example.com> proto=ESMTP helo=<net-109-117-50-253.cust.vodafonedsl.it>
+2025-04-20T00:53:52.944297+02:00 exp01 postfix/smtpd[471313]: lost connection after DATA from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:53:52.944423+02:00 exp01 postfix/smtpd[471313]: disconnect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:54:02.792375+02:00 exp01 postfix/smtpd[471313]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:54:02.863872+02:00 exp01 postfix/smtpd[471316]: connect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:54:05.562952+02:00 exp01 postfix/smtpd[471316]: NOQUEUE: reject: RCPT from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]: 554 5.7.1 <net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]>: Client host rejected: Fishing SPAM Named 20240220 client_p_cust.vodafonedsl.it_it.; from=<atay@example.com> to=<atay@example.com> proto=ESMTP helo=<net-109-117-50-253.cust.vodafonedsl.it>
+2025-04-20T00:54:07.133479+02:00 exp01 postfix/smtpd[471316]: lost connection after DATA from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:54:07.133604+02:00 exp01 postfix/smtpd[471316]: disconnect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:54:13.250309+02:00 exp01 postfix/smtpd[471316]: connect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:54:15.800920+02:00 exp01 postfix/smtpd[471316]: NOQUEUE: reject: RCPT from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]: 554 5.7.1 <net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]>: Client host rejected: Fishing SPAM Named 20240220 client_p_cust.vodafonedsl.it_it.; from=<atay@example.com> to=<atay@example.com> proto=ESMTP helo=<net-109-117-50-253.cust.vodafonedsl.it>
+2025-04-20T00:54:17.556252+02:00 exp01 postfix/smtpd[471316]: lost connection after DATA from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253]
+2025-04-20T00:54:17.556410+02:00 exp01 postfix/smtpd[471316]: disconnect from net-109-117-50-253.cust.vodafonedsl.it[109.117.50.253] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:54:33.209268+02:00 exp01 dovecot: imap(mountenr)<470940><D4auEWU0ySkoY2WF>: Disconnected: Logged out in=1935 out=17615 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:54:33.493883+02:00 exp01 dovecot: imap-login: Login: user=<mountenr>, method=PLAIN, rip=40.99.101.133, lip=172.17.111.111, mpid=471317, TLS, session=<cdwihGU09tUoY2WF>, orig_user=<mountenr@example.com>
+2025-04-20T00:54:58.635569+02:00 exp01 postfix/smtpd[471316]: table cdb:/etc/postfix/maps/popbefore(0,lock|fold_fix|utf8_request) has changed -- restarting
+2025-04-20T00:54:58.796512+02:00 exp01 postfix/smtpd[471325]: connect from unknown[179.124.17.226]
+2025-04-20T00:55:00.195678+02:00 exp01 postfix/smtpd[471325]: NOQUEUE: reject: RCPT from unknown[179.124.17.226]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [179.124.17.226]; from=<sincerely@example.com> to=<sincerely@example.com> proto=ESMTP helo=<[179.124.17.226]>
+2025-04-20T00:55:01.582593+02:00 exp01 postfix/smtpd[471325]: lost connection after DATA from unknown[179.124.17.226]
+2025-04-20T00:55:01.582726+02:00 exp01 postfix/smtpd[471325]: disconnect from unknown[179.124.17.226] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:55:03.418529+02:00 exp01 postfix/smtpd[471325]: connect from unknown[179.124.17.226]
+2025-04-20T00:55:05.809698+02:00 exp01 postfix/smtpd[471325]: NOQUEUE: reject: RCPT from unknown[179.124.17.226]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [179.124.17.226]; from=<sincerely@example.com> to=<sincerely@example.com> proto=ESMTP helo=<[179.124.17.226]>
+2025-04-20T00:55:07.309176+02:00 exp01 postfix/smtpd[471325]: lost connection after DATA from unknown[179.124.17.226]
+2025-04-20T00:55:07.309300+02:00 exp01 postfix/smtpd[471325]: disconnect from unknown[179.124.17.226] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:55:09.635820+02:00 exp01 postfix/smtpd[471325]: connect from unknown[179.124.17.226]
+2025-04-20T00:55:10.881078+02:00 exp01 postfix/smtpd[471325]: NOQUEUE: reject: RCPT from unknown[179.124.17.226]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [179.124.17.226]; from=<sincerely@example.com> to=<sincerely@example.com> proto=ESMTP helo=<[179.124.17.226]>
+2025-04-20T00:55:11.456915+02:00 exp01 postfix/smtpd[471325]: lost connection after DATA from unknown[179.124.17.226]
+2025-04-20T00:55:11.457288+02:00 exp01 postfix/smtpd[471325]: disconnect from unknown[179.124.17.226] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:55:12.627264+02:00 exp01 dovecot: imap(helther)<470987><rpoYFGU0zxAoY0QV>: Disconnected: Logged out in=1935 out=17487 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:55:12.764449+02:00 exp01 postfix/smtpd[471325]: connect from unknown[179.124.17.226]
+2025-04-20T00:55:12.862097+02:00 exp01 dovecot: imap-login: Login: user=<helther>, method=PLAIN, rip=40.99.68.21, lip=172.17.111.111, mpid=471326, TLS, session=<DMt6hmU0zHYoY0QV>, orig_user=<helther@example.com>
+2025-04-20T00:55:14.161958+02:00 exp01 postfix/smtpd[471325]: NOQUEUE: reject: RCPT from unknown[179.124.17.226]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [179.124.17.226]; from=<sincerely@example.com> to=<sincerely@example.com> proto=ESMTP helo=<[179.124.17.226]>
+2025-04-20T00:55:14.703534+02:00 exp01 postfix/smtpd[471325]: lost connection after DATA from unknown[179.124.17.226]
+2025-04-20T00:55:14.703743+02:00 exp01 postfix/smtpd[471325]: disconnect from unknown[179.124.17.226] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:55:52.991153+02:00 exp01 dovecot: imap(tony33)<470996><BdtoFmU0pqgoZBmA>: Disconnected: Logged out in=2053 out=18738 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:55:53.309689+02:00 exp01 dovecot: imap-login: Login: user=<tony33>, method=PLAIN, rip=40.100.25.128, lip=172.17.111.111, mpid=471337, TLS, session=<HsnkiGU0ZawoZBmA>, orig_user=<tony33@example.com>
+2025-04-20T00:55:57.127336+02:00 exp01 dovecot: imap(mansion)<471002><Oem8FmU0i140YjTt>: Disconnected: Logged out in=2607 out=25023 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:55:57.849276+02:00 exp01 dovecot: imap-login: Login: user=<mansion>, method=PLAIN, rip=52.98.52.237, lip=172.17.111.111, mpid=471343, TLS, session=<oQsqiWU00Qw0YjTt>, orig_user=<mansion@example.com>
+2025-04-20T00:57:37.796565+02:00 exp01 dovecot: imap(hotwater)<471013><5i/LHGU08s0oY479>: Disconnected: Logged out in=1935 out=19175 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T00:57:39.443249+02:00 exp01 dovecot: imap-login: Login: user=<hotwater>, method=PLAIN, rip=40.99.142.253, lip=172.17.111.111, mpid=471354, TLS, session=<RSA4j2U0Va0oY479>, orig_user=<hotwater@example.com>
+2025-04-20T00:58:34.892956+02:00 exp01 postfix/anvil[471270]: statistics: max connection rate 4/60s for (smtp:109.117.50.253) at May  6 00:54:13
+2025-04-20T00:58:34.897658+02:00 exp01 postfix/anvil[471270]: statistics: max connection count 1 for (smtp:64.62.197.80) at May  6 00:51:55
+2025-04-20T00:58:34.897794+02:00 exp01 postfix/anvil[471270]: statistics: max cache size 2 at May  6 00:52:06
+2025-04-20T00:59:40.337491+02:00 exp01 postfix/smtpd[471364]: connect from unknown[190.153.217.186]
+2025-04-20T00:59:41.104615+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[190.153.217.186]: 554 5.7.1 <unknown[190.153.217.186]>: Client host rejected: Fishing SPAM 20241207 client_n_190.153.128.0/17_cl; from=<realize@example.com> to=<realize@example.com> proto=ESMTP helo=<[190.153.217.186]>
+2025-04-20T00:59:42.256588+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[190.153.217.186]
+2025-04-20T00:59:42.256817+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[190.153.217.186] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:59:42.787966+02:00 exp01 postfix/smtpd[471364]: connect from unknown[190.153.217.186]
+2025-04-20T00:59:43.469048+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[190.153.217.186]: 554 5.7.1 <unknown[190.153.217.186]>: Client host rejected: Fishing SPAM 20241207 client_n_190.153.128.0/17_cl; from=<realize@example.com> to=<realize@example.com> proto=ESMTP helo=<[190.153.217.186]>
+2025-04-20T00:59:43.931325+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[190.153.217.186]
+2025-04-20T00:59:43.931410+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[190.153.217.186] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:59:44.796637+02:00 exp01 postfix/smtpd[471364]: connect from unknown[190.153.217.186]
+2025-04-20T00:59:45.783641+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[190.153.217.186]: 554 5.7.1 <unknown[190.153.217.186]>: Client host rejected: Fishing SPAM 20241207 client_n_190.153.128.0/17_cl; from=<realize@example.com> to=<realize@example.com> proto=ESMTP helo=<[190.153.217.186]>
+2025-04-20T00:59:46.246523+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[190.153.217.186]
+2025-04-20T00:59:46.246627+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[190.153.217.186] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:59:46.769297+02:00 exp01 postfix/smtpd[471364]: connect from unknown[190.153.217.186]
+2025-04-20T00:59:47.575702+02:00 exp01 dovecot: auth-worker(471368): conn unix:auth-worker (pid=471078,uid=110): auth-worker<1>: pam(info,185.59.100.73,<TRW5lmU0mLq5O2RJ>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T00:59:48.096319+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[190.153.217.186]: 554 5.7.1 <unknown[190.153.217.186]>: Client host rejected: Fishing SPAM 20241207 client_n_190.153.128.0/17_cl; from=<realize@example.com> to=<realize@example.com> proto=ESMTP helo=<[190.153.217.186]>
+2025-04-20T00:59:48.597094+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[190.153.217.186]
+2025-04-20T00:59:48.597328+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[190.153.217.186] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T00:59:49.331725+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<info>, method=PLAIN, rip=185.59.100.73, lip=172.17.111.111, session=<TRW5lmU0mLq5O2RJ>, orig_user=<info@example.com>
+2025-04-20T01:00:01.473901+02:00 exp01 postfix/pickup[470913]: 73444FE: uid=0 from=<root>
+2025-04-20T01:00:01.475430+02:00 exp01 postsrsd[471378]: srs_forward: <root@mail.example.com> rewritten as <SRS0=71++=XV=mail.example.com=root@example.com>
+2025-04-20T01:00:01.475905+02:00 exp01 postsrsd[471378]: srs_forward: <SRS0=71++=XV=mail.example.com=root@example.com> not rewritten: Valid SRS address for <root@mail.example.com>
+2025-04-20T01:00:01.499305+02:00 exp01 opendmarc[204]: ignoring connection from localhost
+2025-04-20T01:00:01.501549+02:00 exp01 postfix/cleanup[471377]: 73444FE: message-id=<20250505160001.73444FE@mail.example.com>
+2025-04-20T01:00:01.595491+02:00 exp01 postfix/qmgr[204721]: 73444FE: from=<SRS0=71++=XV=mail.example.com=root@example.com>, size=719, nrcpt=2 (queue active)
+2025-04-20T01:00:01.615102+02:00 exp01 postfix/local[471382]: 73444FE: to=<syndy@example.com>, relay=local, delay=0.17, delays=0.15/0.01/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+2025-04-20T01:00:01.619820+02:00 exp01 postfix/pickup[470913]: 96841107: uid=0 from=<root>
+2025-04-20T01:00:01.621709+02:00 exp01 postsrsd[471378]: srs_forward: <root@mail.example.com> rewritten as <SRS0=71++=XV=mail.example.com=root@example.com>
+2025-04-20T01:00:01.621840+02:00 exp01 postsrsd[471378]: srs_forward: <SRS0=71++=XV=mail.example.com=root@example.com> not rewritten: Valid SRS address for <root@mail.example.com>
+2025-04-20T01:00:01.622315+02:00 exp01 opendmarc[204]: ignoring connection from localhost
+2025-04-20T01:00:01.623354+02:00 exp01 postfix/cleanup[471377]: 96841107: message-id=<20250505160001.96841107@mail.example.com>
+2025-04-20T01:00:01.628942+02:00 exp01 postfix/local[471382]: 73444FE: to=<syndy@mail.example.com>, orig_to=<root>, relay=local, delay=0.18, delays=0.15/0.02/0/0.01, dsn=2.0.0, status=sent (delivered to maildir)
+2025-04-20T01:00:01.682375+02:00 exp01 postfix/qmgr[204721]: 73444FE: removed
+2025-04-20T01:00:01.688707+02:00 exp01 postfix/qmgr[204721]: 96841107: from=<SRS0=71++=XV=mail.example.com=root@example.com>, size=133885, nrcpt=2 (queue active)
+2025-04-20T01:00:01.721427+02:00 exp01 postfix/local[471382]: 96841107: to=<syndy@mail.example.com>, orig_to=<root>, relay=local, delay=0.11, delays=0.09/0/0/0.02, dsn=2.0.0, status=sent (delivered to maildir)
+2025-04-20T01:00:01.745184+02:00 exp01 postfix/qmgr[204721]: 96841107: removed
+2025-04-20T01:00:37.824239+02:00 exp01 postfix/smtpd[471364]: connect from unknown[45.173.72.59]
+2025-04-20T01:00:41.572479+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[45.173.72.59]: 554 5.7.1 <unknown[45.173.72.59]>: Client host rejected: Fishing SPAM 20240220 client_n_45.173.72.0/22_pe; from=<edwinman@example.com> to=<edwinman@example.com> proto=ESMTP helo=<[45.173.72.59]>
+2025-04-20T01:00:43.012226+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[45.173.72.59]
+2025-04-20T01:00:43.012430+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[45.173.72.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T01:00:51.313715+02:00 exp01 postfix/smtpd[471364]: connect from unknown[45.173.72.59]
+2025-04-20T01:00:55.301608+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[45.173.72.59]: 554 5.7.1 <unknown[45.173.72.59]>: Client host rejected: Fishing SPAM 20240220 client_n_45.173.72.0/22_pe; from=<edwinman@example.com> to=<edwinman@example.com> proto=ESMTP helo=<[45.173.72.59]>
+2025-04-20T01:00:57.391566+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[45.173.72.59]
+2025-04-20T01:00:57.391693+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[45.173.72.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T01:01:03.200496+02:00 exp01 postfix/smtpd[471364]: connect from unknown[45.173.72.59]
+2025-04-20T01:01:06.950008+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[45.173.72.59]: 554 5.7.1 <unknown[45.173.72.59]>: Client host rejected: Fishing SPAM 20240220 client_n_45.173.72.0/22_pe; from=<edwinman@example.com> to=<edwinman@example.com> proto=ESMTP helo=<[45.173.72.59]>
+2025-04-20T01:01:08.965705+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[45.173.72.59]
+2025-04-20T01:01:08.965825+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[45.173.72.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T01:01:12.608714+02:00 exp01 postfix/smtpd[471364]: connect from unknown[45.173.72.59]
+2025-04-20T01:01:15.141980+02:00 exp01 postfix/smtpd[471364]: NOQUEUE: reject: RCPT from unknown[45.173.72.59]: 554 5.7.1 <unknown[45.173.72.59]>: Client host rejected: Fishing SPAM 20240220 client_n_45.173.72.0/22_pe; from=<edwinman@example.com> to=<edwinman@example.com> proto=ESMTP helo=<[45.173.72.59]>
+2025-04-20T01:01:15.643603+02:00 exp01 postfix/smtpd[471364]: lost connection after DATA from unknown[45.173.72.59]
+2025-04-20T01:01:15.644010+02:00 exp01 postfix/smtpd[471364]: disconnect from unknown[45.173.72.59] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T01:03:13.055775+02:00 exp01 dovecot: imap(helther)<471326><DMt6hmU0zHYoY0QV>: Disconnected: Connection closed (IDLE finished 120.124 secs ago) in=516 out=5032 deleted=0 expunged=0 trashed=0 hdr_count=0 hdr_bytes=0 body_count=0 body_bytes=0
+2025-04-20T01:03:19.344196+02:00 exp01 dovecot: imap-login: Login: user=<helther>, method=PLAIN, rip=40.99.72.93, lip=172.17.111.111, mpid=471389, TLS, session=</s55o2U0I/MoY0hd>, orig_user=<helther@example.com>
+2025-04-20T01:04:35.802010+02:00 exp01 postfix/anvil[471365]: statistics: max connection rate 4/60s for (smtp:190.153.217.186) at May  6 00:59:46
+2025-04-20T01:04:35.806546+02:00 exp01 postfix/anvil[471365]: statistics: max connection count 1 for (smtp:190.153.217.186) at May  6 00:59:40
+2025-04-20T01:04:35.806704+02:00 exp01 postfix/anvil[471365]: statistics: max cache size 2 at May  6 01:00:37
+2025-04-20T01:05:02.647818+02:00 exp01 dovecot: auth-worker(471442): conn unix:auth-worker (pid=471387,uid=110): auth-worker<1>: pam(info,139.150.83.99,<jw6CqWU06NqLllNj>): pam_authenticate() failed: Authentication failure (Password mismatch?)
+2025-04-20T01:05:04.184056+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed (auth failed, 1 attempts in 4 secs): user=<info>, method=PLAIN, rip=139.150.83.99, lip=172.17.111.111, session=<jw6CqWU06NqLllNj>, orig_user=<info@example.com>
+2025-04-20T01:05:41.116225+02:00 exp01 postfix/smtpd[471444]: connect from unknown[41.85.177.122]
+2025-04-20T01:05:43.761788+02:00 exp01 postfix/smtpd[471444]: NOQUEUE: reject: RCPT from unknown[41.85.177.122]: 554 5.7.1 <unknown[41.85.177.122]>: Client host rejected: Fishing SPAM 20250130 client_n_41.85.160.0/19_bj; from=<kaal@example.com> to=<kaal@example.com> proto=ESMTP helo=<[41.85.177.122]>
+2025-04-20T01:05:44.991456+02:00 exp01 postfix/smtpd[471444]: lost connection after DATA from unknown[41.85.177.122]
+2025-04-20T01:05:44.991583+02:00 exp01 postfix/smtpd[471444]: disconnect from unknown[41.85.177.122] ehlo=1 mail=1 rcpt=0/1 data=0/1 commands=2/4
+2025-04-20T01:05:51.124422+02:00 exp01 dovecot: pop3-login: Disconnected: Connection closed: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46 (no auth attempts in 0 secs): user=<>, rip=124.154.91.97, lip=172.17.111.111, TLS handshaking: SSL_accept() failed: error:0A000416:SSL routines::sslv3 alert certificate unknown: SSL alert number 46, session=<itmGrGU0uJ18mlth>
