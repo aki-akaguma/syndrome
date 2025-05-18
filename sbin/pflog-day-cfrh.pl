@@ -5,6 +5,7 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#	v0.3.0  2024/05/18  added: Named: client_p.
 #	v0.2.0  2024/05/02  refactoring full.
 #	v0.1.0  2024/05/01  first release.
 #
@@ -22,7 +23,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.2.0';
+my $version = '0.3.0';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -58,19 +59,23 @@ if ($opt_test) {
 
 ###
 my ($mlog_ary, $dt) = read_curr_maillog($MAIL_LOG, $DT_PATH);
-my ($cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $ptrcloud_ip4s, $kagoya_ip4s) =
-  extract_spam_sources($mlog_ary);
-output_process($dt, $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $ptrcloud_ip4s,
-    $kagoya_ip4s);
+my (
+    $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
+    $client_p_ip4s, $ptrcloud_ip4s, $kagoya_ip4s
+) = extract_spam_sources($mlog_ary);
+output_process($dt, $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
+    $ptrcloud_ip4s, $kagoya_ip4s);
 if ($opt_test) {
     my %json_map;
     $json_map{'cfrh_ip4s'}      = $cfrh_ip4s;
     $json_map{'unk_sasl_ip4s'}  = $unk_sasl_ip4s;
     $json_map{'host_sasl_ip4s'} = $host_sasl_ip4s;
     $json_map{'client_n_ip4s'}  = $client_n_ip4s;
+    $json_map{'client_p_ip4s'}  = $client_p_ip4s;
     $json_map{'ptrcloud_ip4s'}  = $ptrcloud_ip4s;
     $json_map{'kagoya_ip4s'}    = $kagoya_ip4s;
     output_json(\%json_map, "map.json");
+
     #print "vmail input: $mock_send_command_vmail_get_cc_input\n";
 }
 
@@ -185,8 +190,8 @@ sub cut_day_on_mail_log_loop {
 }
 
 sub output_process {
-    my ($dt, $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $ptrcloud_ip4s,
-        $kagoya_ip4s)
+    my ($dt, $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
+        $ptrcloud_ip4s, $kagoya_ip4s)
       = @_;
     my @ks = ();
     ##
@@ -201,6 +206,9 @@ sub output_process {
     ##
     @ks = sort sort_ip4_host keys(%$host_sasl_ip4s);
     output_host("host sasl", \@ks);
+    ##
+    @ks = sort sort_ip4_host keys(%$client_p_ip4s);
+    output_host("client_p", \@ks);
     ##
     @ks = sort sort_ip4_host keys(%$ptrcloud_ip4s);
     output_host("ptrcloud.net", \@ks);
@@ -360,8 +368,10 @@ sub extract_spam_sources {
     my %unk_sasl_ip4s;
     my %host_sasl_ip4s;
     my %client_n_ip4s;
+    my %client_p_ip4s;
     my %ptrcloud_ip4s;
     my %kagoya_ip4s;
+
     foreach my $line (@$mlog_ary) {
         ##print "$line\n";
         if ($line =~ /^\S+ \S+ postfix\S+: warning: (\S.+)$/) {
@@ -372,13 +382,13 @@ sub extract_spam_sources {
         elsif ($line =~ /^\S+ \S+ postfix\S+: NOQUEUE: reject: RCPT from (\S.+)$/) {
             ## 2025-05-01T16:37:21.954955+09:00 sys01 postfix/smtpd[196102]: NOQUEUE: reject: RCPT from
             my $rest = $1;
-            extract_spam_sources_reject($rest, \%cfrh_ip4s, \%client_n_ip4s, \%ptrcloud_ip4s,
-                \%kagoya_ip4s);
+            extract_spam_sources_reject($rest, \%cfrh_ip4s, \%client_n_ip4s, \%client_p_ip4s,
+                \%ptrcloud_ip4s, \%kagoya_ip4s);
         }
     }
     return (
-        \%cfrh_ip4s,     \%unk_sasl_ip4s, \%host_sasl_ip4s,
-        \%client_n_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s
+        \%cfrh_ip4s,     \%unk_sasl_ip4s, \%host_sasl_ip4s, \%client_n_ip4s,
+        \%client_p_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s
     );
 }
 
@@ -440,7 +450,7 @@ sub extract_spam_sources_warning {
 }
 
 sub extract_spam_sources_reject {
-    my ($rest, $cfrh_ip4s, $client_n_ip4s, $ptrcloud_ip4s, $kagoya_ip4s) = @_;
+    my ($rest, $cfrh_ip4s, $client_n_ip4s, $client_p_ip4s, $ptrcloud_ip4s, $kagoya_ip4s) = @_;
     if ($rest =~
         /^unknown\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ Client host rejected: cannot find your hostname,/
       )
@@ -464,6 +474,32 @@ sub extract_spam_sources_reject {
         ## unknown[45.6.0.58]: 554 5.7.1 <unknown[45.6.0.58]>: Client host rejected: Fishing SPAM 20240220 client_n_45.6.0.0/22_br; from=<shin@example.com> to=<shin@example.com> proto=ESMTP helo=<[45.6.0.58]>
         my $ip4 = $1;
         map_count_up($client_n_ip4s, $ip4);
+    }
+    elsif ($rest =~
+/^(\S+)\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ \S+ Client host rejected: Fishing SPAM Named \d+ client_p_[^ ;]+_(..)\.; /
+      )
+    {
+        ## static-200-105-212-198.acelerate.net[200.105.212.198]: 554 5.7.1 <static-200-105-212-198.acelerate.net[200.105.212.198]>: Client host rejected: Fishing SPAM Named 20240220 client_p_acelerate.net_bo.; from=<xooxoxo@mailxtr.eu> to=<syndy@example.com> proto=ESMTP helo=<static-200-105-212-198.acelerate.net>
+        my $host = $1;
+        my $ip4  = $2;
+        my $cc   = $3;
+        if ($cc eq 'jp') {
+            ## nothing todo
+        }
+        elsif ($cc eq 'us') {
+            if ($cc =~ /linodeusercontent\.com$/) {
+                map_count_up($client_p_ip4s, $ip4);
+            }
+            elsif ($cc =~ /spectrum\.com$/) {
+                map_count_up($client_p_ip4s, $ip4);
+            }
+            elsif ($cc =~ /contaboserver\.net$/) {
+                map_count_up($client_p_ip4s, $ip4);
+            }
+        }
+        else {
+            map_count_up($client_p_ip4s, $ip4);
+        }
     }
     elsif ($rest =~ /^(\S+)\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ \S+: Sender address rejected: /) {
         ## by.ptr245.ptrcloud.net[153.122.192.178]: 450 4.1.7 <admin@mail021.gascensori.com>: Sender address rejected: unverified address: connect to mail021.gascensori.com[153.122.192.178]:25: Connection refused; from=<admin@mail021.gascensori.com> to=<yu-yu-sa@example.com> proto=ESMTP helo=<mail021.gascensori.com>
