@@ -487,13 +487,33 @@ sub extract_spam_sources_reject {
             ## nothing todo
         }
         elsif ($cc eq 'us') {
-            if ($cc =~ /linodeusercontent\.com$/) {
-                map_count_up($client_p_ip4s, $ip4);
+            if ($host =~ /\.com$/) {
+                my @client_p_patterns_com = (
+                    qr/\.linodeusercontent\.com$/, qr/\.spectrum\.com$/,
+                    qr/\.hostwindsdns\.com$/,      qr/\.onlinehome-server\.com$/,
+                    qr/\.linode\.com$/,
+                );
+                foreach my $re (@client_p_patterns_com) {
+                    if ($host =~ $re) {
+                        map_count_up($client_p_ip4s, $ip4);
+                        last;
+                    }
+                }
             }
-            elsif ($cc =~ /spectrum\.com$/) {
-                map_count_up($client_p_ip4s, $ip4);
+            elsif ($host =~ /\.net$/) {
+                my @client_p_patterns_net =
+                  (qr/\.contaboserver\.net$/, qr/\.nxcli\.net$/, qr/\.secureserver\.net$/,);
+                foreach my $re (@client_p_patterns_net) {
+                    if ($host =~ $re) {
+                        map_count_up($client_p_ip4s, $ip4);
+                        last;
+                    }
+                }
             }
-            elsif ($cc =~ /contaboserver\.net$/) {
+            elsif ($host =~ /\.jp$/) {
+                ## nothing todo
+            }
+            elsif ($host =~ /\.(cn|br)$/) {
                 map_count_up($client_p_ip4s, $ip4);
             }
         }
