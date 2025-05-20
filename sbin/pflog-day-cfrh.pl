@@ -5,11 +5,12 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.5.0  2024/05/20  added: spamcop.
 #   v0.4.0  2024/05/20  added: S25R.
 #   v0.3.1  2024/05/20  added: Named: some us domains.
-#	v0.3.0  2024/05/18  added: Named: client_p.
-#	v0.2.0  2024/05/02  refactoring full.
-#	v0.1.0  2024/05/01  first release.
+#   v0.3.0  2024/05/18  added: Named: client_p.
+#   v0.2.0  2024/05/02  refactoring full.
+#   v0.1.0  2024/05/01  first release.
 #
 
 =pod
@@ -25,7 +26,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.4.0';
+my $version = '0.5.0';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -62,12 +63,12 @@ if ($opt_test) {
 ###
 my ($mlog_ary, $dt) = read_curr_maillog($MAIL_LOG, $DT_PATH);
 my (
-    $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
-    $client_p_ip4s, $s25r_ip4s,     $ptrcloud_ip4s,  $kagoya_ip4s
+    $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
+    $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s
 ) = extract_spam_sources($mlog_ary);
 output_process(
     $dt,            $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
-    $client_p_ip4s, $s25r_ip4s, $ptrcloud_ip4s, $kagoya_ip4s
+    $client_p_ip4s, $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s
 );
 if ($opt_test) {
     my %json_map;
@@ -77,6 +78,7 @@ if ($opt_test) {
     $json_map{'client_n_ip4s'}  = $client_n_ip4s;
     $json_map{'client_p_ip4s'}  = $client_p_ip4s;
     $json_map{'s25r_ip4s'}      = $s25r_ip4s;
+    $json_map{'spamcop_ip4s'}   = $spamcop_ip4s;
     $json_map{'ptrcloud_ip4s'}  = $ptrcloud_ip4s;
     $json_map{'kagoya_ip4s'}    = $kagoya_ip4s;
     output_json(\%json_map, "map.json");
@@ -197,7 +199,7 @@ sub cut_day_on_mail_log_loop {
 sub output_process {
     my (
         $dt,            $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
-        $client_p_ip4s, $s25r_ip4s, $ptrcloud_ip4s, $kagoya_ip4s
+        $client_p_ip4s, $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s
     ) = @_;
     my @ks = ();
     ##
@@ -218,6 +220,9 @@ sub output_process {
     ##
     @ks = sort sort_ip4_host keys(%$s25r_ip4s);
     output_host("s25r", \@ks);
+    ##
+    @ks = sort sort_ip4_host keys(%$spamcop_ip4s);
+    output_host("spamcop", \@ks);
     ##
     @ks = sort sort_ip4_host keys(%$ptrcloud_ip4s);
     output_host("ptrcloud.net", \@ks);
@@ -379,6 +384,7 @@ sub extract_spam_sources {
     my %client_n_ip4s;
     my %client_p_ip4s;
     my %s25r_ip4s;
+    my %spamcop_ip4s;
     my %ptrcloud_ip4s;
     my %kagoya_ip4s;
 
@@ -393,12 +399,12 @@ sub extract_spam_sources {
             ## 2025-05-01T16:37:21.954955+09:00 sys01 postfix/smtpd[196102]: NOQUEUE: reject: RCPT from
             my $rest = $1;
             extract_spam_sources_reject($rest, \%cfrh_ip4s, \%client_n_ip4s, \%client_p_ip4s,
-                \%s25r_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s);
+                \%s25r_ip4s, \%spamcop_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s);
         }
     }
     return (
-        \%cfrh_ip4s,     \%unk_sasl_ip4s, \%host_sasl_ip4s, \%client_n_ip4s,
-        \%client_p_ip4s, \%s25r_ip4s,     \%ptrcloud_ip4s,  \%kagoya_ip4s
+        \%cfrh_ip4s, \%unk_sasl_ip4s, \%host_sasl_ip4s, \%client_n_ip4s, \%client_p_ip4s,
+        \%s25r_ip4s, \%spamcop_ip4s,  \%ptrcloud_ip4s,  \%kagoya_ip4s
     );
 }
 
@@ -460,7 +466,8 @@ sub extract_spam_sources_warning {
 }
 
 sub extract_spam_sources_reject {
-    my ($rest, $cfrh_ip4s, $client_n_ip4s, $client_p_ip4s, $s25r_ip4s, $ptrcloud_ip4s, $kagoya_ip4s)
+    my ($rest, $cfrh_ip4s, $client_n_ip4s, $client_p_ip4s, $s25r_ip4s, $spamcop_ip4s,
+        $ptrcloud_ip4s, $kagoya_ip4s)
       = @_;
     if ($rest =~ /^([^\[\] ]+)\[(\d+\.\d+\.\d+\.\d+)\]: (.+)$/) {
         my $host  = $1;
@@ -496,6 +503,18 @@ sub extract_spam_sources_reject {
         elsif ($rest2 =~ /^\S+ \S+ \S+ Client host rejected: S25R check, be patient \[[^]]+\]; /) {
             ## 132-255-37-205.starman.net.br[132.255.37.205]: 450 4.7.1 <132-255-37-205.starman.net.br[132.255.37.205]>: Client host rejected: S25R check, be patient [r1]; from=<z3hovxbiys44r@bqao.com> to=<leyla@example.com> proto=ESMTP helo=<bqao.com>
             extract_spam_sources_reject_s25r($host, $ip4, $s25r_ip4s);
+        }
+        elsif ($rest2 =~
+/^\S+ \S+ Service unavailable; Client host \[\d+\.\d+\.\d+\.\d+\] blocked using bl\.spamcop\.net; /
+          )
+        {
+            ## u148-34.static.grape.cz[93.91.148.34]: 554 5.7.1 Service unavailable; Client host [93.91.148.34] blocked using bl.spamcop.net; Blocked - see https://www.spamcop.net/bl.shtml?93.91.148.34; from=<vzefjiws@icloud.com> to=<hannah@example.com> proto=SMTP helo=<u148-34.static.grape.cz>
+            if ($host =~ /\.jp$/) {
+                ## nothing todo
+            }
+            else {
+                map_count_up($spamcop_ip4s, $ip4);
+            }
         }
         elsif ($rest2 =~ /^\S+ \S+ \S+: Sender address rejected: /) {
             ## by.ptr245.ptrcloud.net[153.122.192.178]: 450 4.1.7 <admin@mail021.gascensori.com>: Sender address rejected: unverified address: connect to mail021.gascensori.com[153.122.192.178]:25: Connection refused; from=<admin@mail021.gascensori.com> to=<yu-yu-sa@example.com> proto=ESMTP helo=<mail021.gascensori.com>
