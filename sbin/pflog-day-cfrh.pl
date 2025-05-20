@@ -5,6 +5,7 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.4.0  2024/05/20  added: S25R.
 #   v0.3.1  2024/05/20  added: Named: some us domains.
 #	v0.3.0  2024/05/18  added: Named: client_p.
 #	v0.2.0  2024/05/02  refactoring full.
@@ -24,7 +25,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.3.1';
+my $version = '0.4.0';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -62,10 +63,12 @@ if ($opt_test) {
 my ($mlog_ary, $dt) = read_curr_maillog($MAIL_LOG, $DT_PATH);
 my (
     $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
-    $client_p_ip4s, $ptrcloud_ip4s, $kagoya_ip4s
+    $client_p_ip4s, $s25r_ip4s,     $ptrcloud_ip4s,  $kagoya_ip4s
 ) = extract_spam_sources($mlog_ary);
-output_process($dt, $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
-    $ptrcloud_ip4s, $kagoya_ip4s);
+output_process(
+    $dt,            $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
+    $client_p_ip4s, $s25r_ip4s, $ptrcloud_ip4s, $kagoya_ip4s
+);
 if ($opt_test) {
     my %json_map;
     $json_map{'cfrh_ip4s'}      = $cfrh_ip4s;
@@ -73,6 +76,7 @@ if ($opt_test) {
     $json_map{'host_sasl_ip4s'} = $host_sasl_ip4s;
     $json_map{'client_n_ip4s'}  = $client_n_ip4s;
     $json_map{'client_p_ip4s'}  = $client_p_ip4s;
+    $json_map{'s25r_ip4s'}      = $s25r_ip4s;
     $json_map{'ptrcloud_ip4s'}  = $ptrcloud_ip4s;
     $json_map{'kagoya_ip4s'}    = $kagoya_ip4s;
     output_json(\%json_map, "map.json");
@@ -191,9 +195,10 @@ sub cut_day_on_mail_log_loop {
 }
 
 sub output_process {
-    my ($dt, $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
-        $ptrcloud_ip4s, $kagoya_ip4s)
-      = @_;
+    my (
+        $dt,            $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
+        $client_p_ip4s, $s25r_ip4s, $ptrcloud_ip4s, $kagoya_ip4s
+    ) = @_;
     my @ks = ();
     ##
     @ks = sort sort_ip4_host keys(%$cfrh_ip4s);
@@ -210,6 +215,9 @@ sub output_process {
     ##
     @ks = sort sort_ip4_host keys(%$client_p_ip4s);
     output_host("client_p", \@ks);
+    ##
+    @ks = sort sort_ip4_host keys(%$s25r_ip4s);
+    output_host("s25r", \@ks);
     ##
     @ks = sort sort_ip4_host keys(%$ptrcloud_ip4s);
     output_host("ptrcloud.net", \@ks);
@@ -370,6 +378,7 @@ sub extract_spam_sources {
     my %host_sasl_ip4s;
     my %client_n_ip4s;
     my %client_p_ip4s;
+    my %s25r_ip4s;
     my %ptrcloud_ip4s;
     my %kagoya_ip4s;
 
@@ -384,12 +393,12 @@ sub extract_spam_sources {
             ## 2025-05-01T16:37:21.954955+09:00 sys01 postfix/smtpd[196102]: NOQUEUE: reject: RCPT from
             my $rest = $1;
             extract_spam_sources_reject($rest, \%cfrh_ip4s, \%client_n_ip4s, \%client_p_ip4s,
-                \%ptrcloud_ip4s, \%kagoya_ip4s);
+                \%s25r_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s);
         }
     }
     return (
         \%cfrh_ip4s,     \%unk_sasl_ip4s, \%host_sasl_ip4s, \%client_n_ip4s,
-        \%client_p_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s
+        \%client_p_ip4s, \%s25r_ip4s,     \%ptrcloud_ip4s,  \%kagoya_ip4s
     );
 }
 
@@ -451,133 +460,154 @@ sub extract_spam_sources_warning {
 }
 
 sub extract_spam_sources_reject {
-    my ($rest, $cfrh_ip4s, $client_n_ip4s, $client_p_ip4s, $ptrcloud_ip4s, $kagoya_ip4s) = @_;
-    if ($rest =~
-        /^unknown\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ Client host rejected: cannot find your hostname,/
-      )
-    {
-        ## unknown[103.154.148.50]: 450 4.7.25 Client host rejected: cannot find your hostname, [103.154.148.50]; from=<bnu-vbl@example.com> to=<bnu-vbl@example.com> proto=ESMTP helo=<smtpclient.apple>
-        my $ip4 = $1;
-        map_count_up($cfrh_ip4s, $ip4);
+    my ($rest, $cfrh_ip4s, $client_n_ip4s, $client_p_ip4s, $s25r_ip4s, $ptrcloud_ip4s, $kagoya_ip4s)
+      = @_;
+    if ($rest =~ /^([^\[\] ]+)\[(\d+\.\d+\.\d+\.\d+)\]: (.+)$/) {
+        my $host  = $1;
+        my $ip4   = $2;
+        my $rest2 = $3;
+        if ($host eq 'unknown') {
+            if ($rest2 =~ /^\S+ \S+ Client host rejected: cannot find your hostname,/) {
+                ## unknown[103.154.148.50]: 450 4.7.25 Client host rejected: cannot find your hostname, [103.154.148.50]; from=<bnu-vbl@example.com> to=<bnu-vbl@example.com> proto=ESMTP helo=<smtpclient.apple>
+                map_count_up($cfrh_ip4s, $ip4);
+                return;
+            }
+            elsif ($rest2 =~ /^\S+ \S+ Client host rejected: cannot find your reverse hostname,/) {
+                ## unknown[200.107.119.187]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [200.107.119.187]; from=<tabuchi@example.com> to=<tabuchi@example.com> proto=ESMTP helo=<[200.107.119.187]>
+                map_count_up($cfrh_ip4s, $ip4);
+                return;
+            }
+        }
+        if ($rest2 =~
+/^\S+ \S+ \S+ Client host rejected: Fishing SPAM \d+ client_n_(\d+\.\d+\.\d+\.\d+\/\d+)_..; /
+          )
+        {
+            ## unknown[45.6.0.58]: 554 5.7.1 <unknown[45.6.0.58]>: Client host rejected: Fishing SPAM 20240220 client_n_45.6.0.0/22_br; from=<shin@example.com> to=<shin@example.com> proto=ESMTP helo=<[45.6.0.58]>
+            my $ip4_net = $1;
+            map_count_up($client_n_ip4s, $ip4_net);
+        }
+        elsif ($rest2 =~
+            /^\S+ \S+ \S+ Client host rejected: Fishing SPAM Named \d+ client_p_[^ ;]+_(..)\.; /)
+        {
+            ## static-200-105-212-198.acelerate.net[200.105.212.198]: 554 5.7.1 <static-200-105-212-198.acelerate.net[200.105.212.198]>: Client host rejected: Fishing SPAM Named 20240220 client_p_acelerate.net_bo.; from=<xooxoxo@mailxtr.eu> to=<syndy@example.com> proto=ESMTP helo=<static-200-105-212-198.acelerate.net>
+            my $cc = $1;
+            extract_spam_sources_reject_client_p($host, $ip4, $cc, $client_p_ip4s);
+        }
+        elsif ($rest2 =~ /^\S+ \S+ \S+ Client host rejected: S25R check, be patient \[[^]]+\]; /) {
+            ## 132-255-37-205.starman.net.br[132.255.37.205]: 450 4.7.1 <132-255-37-205.starman.net.br[132.255.37.205]>: Client host rejected: S25R check, be patient [r1]; from=<z3hovxbiys44r@bqao.com> to=<leyla@example.com> proto=ESMTP helo=<bqao.com>
+            extract_spam_sources_reject_s25r($host, $ip4, $s25r_ip4s);
+        }
+        elsif ($rest2 =~ /^\S+ \S+ \S+: Sender address rejected: /) {
+            ## by.ptr245.ptrcloud.net[153.122.192.178]: 450 4.1.7 <admin@mail021.gascensori.com>: Sender address rejected: unverified address: connect to mail021.gascensori.com[153.122.192.178]:25: Connection refused; from=<admin@mail021.gascensori.com> to=<yu-yu-sa@example.com> proto=ESMTP helo=<mail021.gascensori.com>
+            ## v133-18-163-104.vir.kagoya.net[133.18.163.104]: 450 4.1.7 <no-reply@retajmc.com>: Sender address rejected: unverified address: connect to retajmc.com[133.18.163.104]:25: Connection refused; from=<no-reply@retajmc.com> to=<tadaharu@example.com> proto=ESMTP helo=<mail1.retajmc.com>
+            if ($host =~ /^\S+\.ptrcloud\.net$/) {
+                map_count_up($ptrcloud_ip4s, $ip4);
+            }
+            elsif ($host =~ /^\S+\.vir\.kagoya\.net$/) {
+                map_count_up($kagoya_ip4s, $ip4);
+            }
+        }
     }
-    elsif ($rest =~
-/^unknown\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ Client host rejected: cannot find your reverse hostname,/
-      )
-    {
-        ## unknown[200.107.119.187]: 450 4.7.1 Client host rejected: cannot find your reverse hostname, [200.107.119.187]; from=<tabuchi@example.com> to=<tabuchi@example.com> proto=ESMTP helo=<[200.107.119.187]>
-        my $ip4 = $1;
-        map_count_up($cfrh_ip4s, $ip4);
+    return;
+}
+
+sub extract_spam_sources_reject_client_p {
+    my ($host, $ip4, $cc, $client_p_ip4s) = @_;
+    if ($cc eq 'jp') {
+        ## nothing todo
     }
-    elsif ($rest =~
-/^\S+\[\d+\.\d+\.\d+\.\d+\]: \S+ \S+ \S+ Client host rejected: Fishing SPAM \d+ client_n_(\d+\.\d+\.\d+\.\d+\/\d+)_..; /
-      )
-    {
-        ## unknown[45.6.0.58]: 554 5.7.1 <unknown[45.6.0.58]>: Client host rejected: Fishing SPAM 20240220 client_n_45.6.0.0/22_br; from=<shin@example.com> to=<shin@example.com> proto=ESMTP helo=<[45.6.0.58]>
-        my $ip4 = $1;
-        map_count_up($client_n_ip4s, $ip4);
+    elsif ($cc eq 'us') {
+        if ($host =~ /\.com$/) {
+            my @client_p_patterns_com = (
+                qr/\.myvzw\.com$/,             qr/\.spectrum\.com$/,
+                qr/\.linodeusercontent\.com$/, qr/\.hostwindsdns\.com$/,
+                qr/\.onlinehome-server\.com$/, qr/\.linode\.com$/,
+            );
+            foreach my $re (@client_p_patterns_com) {
+                if ($host =~ $re) {
+                    map_count_up($client_p_ip4s, $ip4);
+                    last;
+                }
+            }
+        }
+        elsif ($host =~ /\.net$/) {
+            my @client_p_patterns_net = (
+                qr/\.contaboserver\.net$/, qr/\.nxcli\.net$/,
+                qr/\.maxxsouthbb\.net$/,   qr/\.verizon\.net$/,
+                qr/\.secureserver\.net$/,
+            );
+            foreach my $re (@client_p_patterns_net) {
+                if ($host =~ $re) {
+                    map_count_up($client_p_ip4s, $ip4);
+                    last;
+                }
+            }
+        }
+        elsif ($host =~ /\.jp$/) {
+            ## nothing todo
+        }
+        elsif ($host =~ /\.(cn|br)$/) {
+            map_count_up($client_p_ip4s, $ip4);
+        }
     }
-    elsif ($rest =~
-/^(\S+)\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ \S+ Client host rejected: Fishing SPAM Named \d+ client_p_[^ ;]+_(..)\.; /
-      )
-    {
-        ## static-200-105-212-198.acelerate.net[200.105.212.198]: 554 5.7.1 <static-200-105-212-198.acelerate.net[200.105.212.198]>: Client host rejected: Fishing SPAM Named 20240220 client_p_acelerate.net_bo.; from=<xooxoxo@mailxtr.eu> to=<syndy@example.com> proto=ESMTP helo=<static-200-105-212-198.acelerate.net>
-        my $host = $1;
-        my $ip4  = $2;
-        my $cc   = $3;
+    else {
+        map_count_up($client_p_ip4s, $ip4);
+    }
+    ## client_p_t-ipconnect.de_de.
+    ## client_p_link.net.pk_pk.
+    ## client_p_clients.your-server.de_de.
+    ## client_p_cpe.netcabo.pt_pt.
+    ## client_p_dialup.adsl.anteldata.net.uy_uy.
+    ## client_p_dialup.mobile.ancel.net.uy_uy.
+    ## client_p_dsl.telepac.pt_pl.
+    ## client_p_home.otenet.gr_gr.
+    ## client_p_net.vodafone.it_it.
+    ## client_p_pools.vodafone-ip.de_de.
+    ## client_p_rev.vodafone.pt_pt.
+    ## client_p_telkomadsl.co.za_za.
+    ## client_p_umts.vodacom.co.za_za.
+    ## client_p_access.hol.gr_gr.
+    ## client_p_acelerate.net_bo.
+    ## client_p_cust.vodafonedsl.it_it.
+    ## client_p_dynamic.gprs.plus.pl_pl.
+    ## client_p_ip.btc-net.bg_bg.
+    ## client_p_play-internet.pl_pl.
+    ## client_p_multi.internet.cyfrowypolsat.pl_pl.
+    ## client_p_hwclouds-dns.com_sg.
+    ## client_p_|.dynamic-ip.hinet.net_tw.
+    ## client_p_|.hinet-ip.hinet.net_tw.
+    ## client_p_|.staticip.rima-tde.net_es.
+    ## client_p_|.business.telecomitalia.it_it.
+    ## client_p_|.customers.tmcz.cz_cz.
+    ## client_p_|.dynamic.kabel-deutschland.de_de.
+    ## client_p_|.home.otenet.gr_gr.
+    ## client_p_|.isp.valenet.com.br_br.
+    ## client_p_|.telecom.net.ar_ar.
+    ## client_p_|.adsl.net.t-com.hr_hr.
+    ## client_p_|.btcentralplus.com_gb.
+    ## client_p_|.cable.virginm.net_gb.
+    ## client_p_|.cm.vtr.net_cl.
+    ## client_p_|.pool.telefonica.de_de.
+    ## client_p_|.red.bezeqint.net_il.
+    ## client_p_|.rev.sfr.net_fr.
+    ## client_p_|.revip6.asianet.co.th_th.
+    ## client_p_|.versanet.de_de.
+    ## client_p_|.dynamic.orange.es_es.
+    ## client_p_|spooky69.eu_fr.
+    ## client_p_|ip-51-91-221.eu_fr.
+    ## client_p_|v-tal.net.br_br.
+    return;
+}
+
+sub extract_spam_sources_reject_s25r {
+    my ($host, $ip4, $s25r_ip4s) = @_;
+    if ($host =~ /\.(..)$/) {
+        my $cc = $1;
         if ($cc eq 'jp') {
             ## nothing todo
         }
-        elsif ($cc eq 'us') {
-            if ($host =~ /\.com$/) {
-                my @client_p_patterns_com = (
-                    qr/\.myvzw\.com$/,             qr/\.spectrum\.com$/,
-                    qr/\.linodeusercontent\.com$/, qr/\.hostwindsdns\.com$/,
-                    qr/\.onlinehome-server\.com$/, qr/\.linode\.com$/,
-                );
-                foreach my $re (@client_p_patterns_com) {
-                    if ($host =~ $re) {
-                        map_count_up($client_p_ip4s, $ip4);
-                        last;
-                    }
-                }
-            }
-            elsif ($host =~ /\.net$/) {
-                my @client_p_patterns_net = (
-                    qr/\.contaboserver\.net$/, qr/\.nxcli\.net$/,
-                    qr/\.maxxsouthbb\.net$/,   qr/\.verizon\.net$/,
-                    qr/\.secureserver\.net$/,
-                );
-                foreach my $re (@client_p_patterns_net) {
-                    if ($host =~ $re) {
-                        map_count_up($client_p_ip4s, $ip4);
-                        last;
-                    }
-                }
-            }
-            elsif ($host =~ /\.jp$/) {
-                ## nothing todo
-            }
-            elsif ($host =~ /\.(cn|br)$/) {
-                map_count_up($client_p_ip4s, $ip4);
-            }
-        }
         else {
-            map_count_up($client_p_ip4s, $ip4);
-        }
-        ## client_p_t-ipconnect.de_de.
-        ## client_p_link.net.pk_pk.
-        ## client_p_clients.your-server.de_de.
-        ## client_p_cpe.netcabo.pt_pt.
-        ## client_p_dialup.adsl.anteldata.net.uy_uy.
-        ## client_p_dialup.mobile.ancel.net.uy_uy.
-        ## client_p_dsl.telepac.pt_pl.
-        ## client_p_home.otenet.gr_gr.
-        ## client_p_net.vodafone.it_it.
-        ## client_p_pools.vodafone-ip.de_de.
-        ## client_p_rev.vodafone.pt_pt.
-        ## client_p_telkomadsl.co.za_za.
-        ## client_p_umts.vodacom.co.za_za.
-        ## client_p_access.hol.gr_gr.
-        ## client_p_acelerate.net_bo.
-        ## client_p_cust.vodafonedsl.it_it.
-        ## client_p_dynamic.gprs.plus.pl_pl.
-        ## client_p_ip.btc-net.bg_bg.
-        ## client_p_play-internet.pl_pl.
-        ## client_p_multi.internet.cyfrowypolsat.pl_pl.
-        ## client_p_hwclouds-dns.com_sg.
-        ## client_p_|.dynamic-ip.hinet.net_tw.
-        ## client_p_|.hinet-ip.hinet.net_tw.
-        ## client_p_|.staticip.rima-tde.net_es.
-        ## client_p_|.business.telecomitalia.it_it.
-        ## client_p_|.customers.tmcz.cz_cz.
-        ## client_p_|.dynamic.kabel-deutschland.de_de.
-        ## client_p_|.home.otenet.gr_gr.
-        ## client_p_|.isp.valenet.com.br_br.
-        ## client_p_|.telecom.net.ar_ar.
-        ## client_p_|.adsl.net.t-com.hr_hr.
-        ## client_p_|.btcentralplus.com_gb.
-        ## client_p_|.cable.virginm.net_gb.
-        ## client_p_|.cm.vtr.net_cl.
-        ## client_p_|.pool.telefonica.de_de.
-        ## client_p_|.red.bezeqint.net_il.
-        ## client_p_|.rev.sfr.net_fr.
-        ## client_p_|.revip6.asianet.co.th_th.
-        ## client_p_|.versanet.de_de.
-        ## client_p_|.dynamic.orange.es_es.
-        ## client_p_|spooky69.eu_fr.
-        ## client_p_|ip-51-91-221.eu_fr.
-        ## client_p_|v-tal.net.br_br.
-    }
-    elsif ($rest =~ /^(\S+)\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ \S+: Sender address rejected: /) {
-        ## by.ptr245.ptrcloud.net[153.122.192.178]: 450 4.1.7 <admin@mail021.gascensori.com>: Sender address rejected: unverified address: connect to mail021.gascensori.com[153.122.192.178]:25: Connection refused; from=<admin@mail021.gascensori.com> to=<yu-yu-sa@example.com> proto=ESMTP helo=<mail021.gascensori.com>
-        ## v133-18-163-104.vir.kagoya.net[133.18.163.104]: 450 4.1.7 <no-reply@retajmc.com>: Sender address rejected: unverified address: connect to retajmc.com[133.18.163.104]:25: Connection refused; from=<no-reply@retajmc.com> to=<tadaharu@example.com> proto=ESMTP helo=<mail1.retajmc.com>
-        my $host = $1;
-        my $ip4  = $2;
-        if ($host =~ /^\S+\.ptrcloud\.net$/) {
-            map_count_up($ptrcloud_ip4s, $ip4);
-        }
-        elsif ($host =~ /^\S+\.vir\.kagoya\.net$/) {
-            map_count_up($kagoya_ip4s, $ip4);
+            map_count_up($s25r_ip4s, $ip4);
         }
     }
     return;
