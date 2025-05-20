@@ -5,6 +5,7 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.3.1  2024/05/20  added: Named: some us domains.
 #	v0.3.0  2024/05/18  added: Named: client_p.
 #	v0.2.0  2024/05/02  refactoring full.
 #	v0.1.0  2024/05/01  first release.
@@ -23,7 +24,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.3.0';
+my $version = '0.3.1';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -489,9 +490,9 @@ sub extract_spam_sources_reject {
         elsif ($cc eq 'us') {
             if ($host =~ /\.com$/) {
                 my @client_p_patterns_com = (
-                    qr/\.linodeusercontent\.com$/, qr/\.spectrum\.com$/,
-                    qr/\.hostwindsdns\.com$/,      qr/\.onlinehome-server\.com$/,
-                    qr/\.linode\.com$/,
+                    qr/\.myvzw\.com$/,             qr/\.spectrum\.com$/,
+                    qr/\.linodeusercontent\.com$/, qr/\.hostwindsdns\.com$/,
+                    qr/\.onlinehome-server\.com$/, qr/\.linode\.com$/,
                 );
                 foreach my $re (@client_p_patterns_com) {
                     if ($host =~ $re) {
@@ -501,8 +502,11 @@ sub extract_spam_sources_reject {
                 }
             }
             elsif ($host =~ /\.net$/) {
-                my @client_p_patterns_net =
-                  (qr/\.contaboserver\.net$/, qr/\.nxcli\.net$/, qr/\.secureserver\.net$/,);
+                my @client_p_patterns_net = (
+                    qr/\.contaboserver\.net$/, qr/\.nxcli\.net$/,
+                    qr/\.maxxsouthbb\.net$/,   qr/\.verizon\.net$/,
+                    qr/\.secureserver\.net$/,
+                );
                 foreach my $re (@client_p_patterns_net) {
                     if ($host =~ $re) {
                         map_count_up($client_p_ip4s, $ip4);
@@ -520,6 +524,49 @@ sub extract_spam_sources_reject {
         else {
             map_count_up($client_p_ip4s, $ip4);
         }
+        ## client_p_t-ipconnect.de_de.
+        ## client_p_link.net.pk_pk.
+        ## client_p_clients.your-server.de_de.
+        ## client_p_cpe.netcabo.pt_pt.
+        ## client_p_dialup.adsl.anteldata.net.uy_uy.
+        ## client_p_dialup.mobile.ancel.net.uy_uy.
+        ## client_p_dsl.telepac.pt_pl.
+        ## client_p_home.otenet.gr_gr.
+        ## client_p_net.vodafone.it_it.
+        ## client_p_pools.vodafone-ip.de_de.
+        ## client_p_rev.vodafone.pt_pt.
+        ## client_p_telkomadsl.co.za_za.
+        ## client_p_umts.vodacom.co.za_za.
+        ## client_p_access.hol.gr_gr.
+        ## client_p_acelerate.net_bo.
+        ## client_p_cust.vodafonedsl.it_it.
+        ## client_p_dynamic.gprs.plus.pl_pl.
+        ## client_p_ip.btc-net.bg_bg.
+        ## client_p_play-internet.pl_pl.
+        ## client_p_multi.internet.cyfrowypolsat.pl_pl.
+        ## client_p_hwclouds-dns.com_sg.
+        ## client_p_|.dynamic-ip.hinet.net_tw.
+        ## client_p_|.hinet-ip.hinet.net_tw.
+        ## client_p_|.staticip.rima-tde.net_es.
+        ## client_p_|.business.telecomitalia.it_it.
+        ## client_p_|.customers.tmcz.cz_cz.
+        ## client_p_|.dynamic.kabel-deutschland.de_de.
+        ## client_p_|.home.otenet.gr_gr.
+        ## client_p_|.isp.valenet.com.br_br.
+        ## client_p_|.telecom.net.ar_ar.
+        ## client_p_|.adsl.net.t-com.hr_hr.
+        ## client_p_|.btcentralplus.com_gb.
+        ## client_p_|.cable.virginm.net_gb.
+        ## client_p_|.cm.vtr.net_cl.
+        ## client_p_|.pool.telefonica.de_de.
+        ## client_p_|.red.bezeqint.net_il.
+        ## client_p_|.rev.sfr.net_fr.
+        ## client_p_|.revip6.asianet.co.th_th.
+        ## client_p_|.versanet.de_de.
+        ## client_p_|.dynamic.orange.es_es.
+        ## client_p_|spooky69.eu_fr.
+        ## client_p_|ip-51-91-221.eu_fr.
+        ## client_p_|v-tal.net.br_br.
     }
     elsif ($rest =~ /^(\S+)\[(\d+\.\d+\.\d+\.\d+)\]: \S+ \S+ \S+: Sender address rejected: /) {
         ## by.ptr245.ptrcloud.net[153.122.192.178]: 450 4.1.7 <admin@mail021.gascensori.com>: Sender address rejected: unverified address: connect to mail021.gascensori.com[153.122.192.178]:25: Connection refused; from=<admin@mail021.gascensori.com> to=<yu-yu-sa@example.com> proto=ESMTP helo=<mail021.gascensori.com>
