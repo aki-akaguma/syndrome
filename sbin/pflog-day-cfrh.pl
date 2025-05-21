@@ -5,6 +5,7 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.6.0  2024/05/21  added: SSL_accept error.
 #   v0.5.0  2024/05/20  added: spamcop.
 #   v0.4.0  2024/05/20  added: S25R.
 #   v0.3.1  2024/05/20  added: Named: some us domains.
@@ -26,7 +27,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.5.0';
+my $version = '0.6.0';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -64,11 +65,12 @@ if ($opt_test) {
 my ($mlog_ary, $dt) = read_curr_maillog($MAIL_LOG, $DT_PATH);
 my (
     $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
-    $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s
+    $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s,   $ssl_err_ip4s,
 ) = extract_spam_sources($mlog_ary);
 output_process(
-    $dt,            $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
-    $client_p_ip4s, $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s
+    $dt,            $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s,
+    $client_n_ip4s, $client_p_ip4s, $s25r_ip4s,     $spamcop_ip4s,
+    $ptrcloud_ip4s, $kagoya_ip4s,   $ssl_err_ip4s
 );
 if ($opt_test) {
     my %json_map;
@@ -81,6 +83,7 @@ if ($opt_test) {
     $json_map{'spamcop_ip4s'}   = $spamcop_ip4s;
     $json_map{'ptrcloud_ip4s'}  = $ptrcloud_ip4s;
     $json_map{'kagoya_ip4s'}    = $kagoya_ip4s;
+    $json_map{'ssl_err_ip4s'}   = $ssl_err_ip4s;
     output_json(\%json_map, "map.json");
 
     #print "vmail input: $mock_send_command_vmail_get_cc_input\n";
@@ -198,8 +201,9 @@ sub cut_day_on_mail_log_loop {
 
 sub output_process {
     my (
-        $dt,            $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s,
-        $client_p_ip4s, $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s
+        $dt,            $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s,
+        $client_n_ip4s, $client_p_ip4s, $s25r_ip4s,     $spamcop_ip4s,
+        $ptrcloud_ip4s, $kagoya_ip4s,   $ssl_err_ip4s
     ) = @_;
     my @ks = ();
     ##
@@ -229,6 +233,9 @@ sub output_process {
     ##
     @ks = sort sort_ip4_host keys(%$kagoya_ip4s);
     output_host("vir.kagoya.net", \@ks);
+    ##
+    @ks = sort sort_ip4_host keys(%$ssl_err_ip4s);
+    output_host("ssl err", \@ks);
     ##
     return;
 }
@@ -387,6 +394,7 @@ sub extract_spam_sources {
     my %spamcop_ip4s;
     my %ptrcloud_ip4s;
     my %kagoya_ip4s;
+    my %ssl_err_ip4s;
 
     foreach my $line (@$mlog_ary) {
         ##print "$line\n";
@@ -401,10 +409,15 @@ sub extract_spam_sources {
             extract_spam_sources_reject($rest, \%cfrh_ip4s, \%client_n_ip4s, \%client_p_ip4s,
                 \%s25r_ip4s, \%spamcop_ip4s, \%ptrcloud_ip4s, \%kagoya_ip4s);
         }
+        elsif ($line =~ /^\S+ \S+ postfix\S+: SSL_accept error from (\S.+)$/) {
+            ## 2025-04-20T00:00:37.397100+02:00 exp01 postfix/smtps/smtpd[86355]: SSL_accept error from
+            my $rest = $1;
+            extract_spam_sources_ssl($rest, \%ssl_err_ip4s);
+        }
     }
     return (
         \%cfrh_ip4s, \%unk_sasl_ip4s, \%host_sasl_ip4s, \%client_n_ip4s, \%client_p_ip4s,
-        \%s25r_ip4s, \%spamcop_ip4s,  \%ptrcloud_ip4s,  \%kagoya_ip4s
+        \%s25r_ip4s, \%spamcop_ip4s,  \%ptrcloud_ip4s,  \%kagoya_ip4s,   \%ssl_err_ip4s,
     );
 }
 
@@ -627,6 +640,27 @@ sub extract_spam_sources_reject_s25r {
         }
         else {
             map_count_up($s25r_ip4s, $ip4);
+        }
+    }
+    return;
+}
+
+sub extract_spam_sources_ssl {
+    my ($rest, $ssl_err_ip4s) = @_;
+    if ($rest =~ /^([^\[\] ]+)\[(\d+\.\d+\.\d+\.\d+)\]: (.+)$/) {
+        my $host  = $1;
+        my $ip4   = $2;
+        my $rest2 = $3;
+        ## SSL_accept error from i15-les03-ix2-176-180-52-57.dsl.dyn.abo.bbox.fr[176.180.52.57]: lost connection
+        ## SSL_accept error from unknown[183.171.236.113]: Connection timed out
+        ## SSL_accept error from unknown[183.171.236.113]: Connection reset by peer
+        ## SSL_accept error from unknown[115.86.227.79]: -1
+        ## SSL_accept error from outbound-402da309.pinterestmail.com[64.45.163.9]: -1
+        if ($host =~ /\.jp$/) {
+            ## nothing todo
+        }
+        elsif ($rest2 =~ /^(-1|lost connection|Connection timed out|Connection reset by peer)$/) {
+            map_count_up($ssl_err_ip4s, $ip4);
         }
     }
     return;
