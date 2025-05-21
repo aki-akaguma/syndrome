@@ -5,6 +5,7 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.6.1  2024/05/21  fixed: client_access_reject_cidr_today.
 #   v0.6.0  2024/05/21  added: SSL_accept error.
 #   v0.5.0  2024/05/20  added: spamcop.
 #   v0.4.0  2024/05/20  added: S25R.
@@ -27,7 +28,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.6.0';
+my $version = '0.6.1';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -302,6 +303,7 @@ sub output_cfrh {
 
 sub convert_full {
     my ($inf, $outf, $dt) = @_;
+    my %net_cc;
     my $cnt = 0;
     while (my $line = <$inf>) {
         chomp($line);
@@ -310,9 +312,14 @@ sub convert_full {
             my $cc  = $1;
             my $net = $2;
             $cc =~ tr/A-Z/a-z/;
-            print $outf "$net\t\tREJECT Fishing SPAM $dt client_n_${net}_$cc\n";
+            $net_cc{$net} = $cc;
             $cnt += 1;
         }
+    }
+    my @ks = sort sort_ip4_net keys(%net_cc);
+    foreach my $net (@ks) {
+        my $cc = $net_cc{$net};
+        print $outf "$net\t\tREJECT Fishing SPAM $dt client_n_${net}_$cc\n";
     }
     return $cnt;
 }
