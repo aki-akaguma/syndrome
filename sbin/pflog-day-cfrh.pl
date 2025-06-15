@@ -2,19 +2,6 @@
 #
 # pflog-day-cfrh.pl
 #
-# depends:
-#   apt install libtest-mockmodule-perl
-#
-#   v0.6.2  2024/05/29  added: host_sasl: known_host: .pbiaas.com
-#   v0.6.1  2024/05/21  fixed: client_access_reject_cidr_today.
-#   v0.6.0  2024/05/21  added: SSL_accept error.
-#   v0.5.0  2024/05/20  added: spamcop.
-#   v0.4.0  2024/05/20  added: S25R.
-#   v0.3.1  2024/05/20  added: Named: some us domains.
-#   v0.3.0  2024/05/18  added: Named: client_p.
-#   v0.2.0  2024/05/02  refactoring full.
-#   v0.1.0  2024/05/01  first release.
-#
 
 =pod
 Purpose of this script:
@@ -25,12 +12,22 @@ Purpose of this script:
 =cut
 
 #
-use v5.28;
+use 5.028;
 use strict;
 use warnings;
 #
 my $version = '0.6.2';
 #
+#---- configuration ----
+
+## perlcritic settings
+## no critic (RegularExpressions::RequireExtendedFormatting)
+## no critic (Variables::ProhibitPackageVars)
+## no critic (ErrorHandling::RequireCarping)
+## no critic (Subroutines::ProhibitManyArgs)
+## no critic (RegularExpressions::ProhibitComplexRegexes)
+## no critic (ControlStructures::ProhibitCascadingIfElse)
+
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
 our $TODAY     = "/etc/postfix/cidr/client_access_reject_cidr_today";
@@ -45,52 +42,54 @@ use Test::MockModule;
 use JSON::XS;
 
 #---- main ----
-#---- command ----
-my $opt_help = 0;
 my $opt_test = 0;
-GetOptions(
-    'help|h' => \$opt_help,
-    'test'   => \$opt_test,
-) or die "Error in command line arguments\n";
-my $argc = scalar @ARGV;
-if ($opt_help || $argc < 0) {
-    print STDERR "[usage] $0 [-h] [--test]\n";
-    print STDERR "    -h       print this help\n";
-    print STDERR "    --test   test mode\n";
-    exit 1;
-}
-if ($opt_test) {
-    setup_test_mode();
-}
 
-###
-my ($mlog_ary, $dt) = read_curr_maillog($MAIL_LOG, $DT_PATH);
-my (
-    $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
-    $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s,   $ssl_err_ip4s,
-) = extract_spam_sources($mlog_ary);
-output_process(
-    $dt,            $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s,
-    $client_n_ip4s, $client_p_ip4s, $s25r_ip4s,     $spamcop_ip4s,
-    $ptrcloud_ip4s, $kagoya_ip4s,   $ssl_err_ip4s
-);
-if ($opt_test) {
-    my %json_map;
-    $json_map{'cfrh_ip4s'}      = $cfrh_ip4s;
-    $json_map{'unk_sasl_ip4s'}  = $unk_sasl_ip4s;
-    $json_map{'host_sasl_ip4s'} = $host_sasl_ip4s;
-    $json_map{'client_n_ip4s'}  = $client_n_ip4s;
-    $json_map{'client_p_ip4s'}  = $client_p_ip4s;
-    $json_map{'s25r_ip4s'}      = $s25r_ip4s;
-    $json_map{'spamcop_ip4s'}   = $spamcop_ip4s;
-    $json_map{'ptrcloud_ip4s'}  = $ptrcloud_ip4s;
-    $json_map{'kagoya_ip4s'}    = $kagoya_ip4s;
-    $json_map{'ssl_err_ip4s'}   = $ssl_err_ip4s;
-    output_json(\%json_map, "map.json");
+MAIN: {
+    #---- command ----
+    my $opt_help = 0;
+    GetOptions(
+        'help|h' => \$opt_help,
+        'test'   => \$opt_test,
+    ) or die "Error in command line arguments\n";
+    my $argc = scalar @ARGV;
+    if ($opt_help || $argc < 0) {
+        print STDERR "[usage] $0 [-h] [--test]\n";
+        print STDERR "    -h       print this help\n";
+        print STDERR "    --test   test mode\n";
+        exit 1;
+    }
+    if ($opt_test) {
+        setup_test_mode();
+    }
 
-    #print "vmail input: $mock_send_command_vmail_get_cc_input\n";
+    ###
+    my ($mlog_ary, $dt) = read_curr_maillog($MAIL_LOG, $DT_PATH);
+    my (
+        $cfrh_ip4s, $unk_sasl_ip4s, $host_sasl_ip4s, $client_n_ip4s, $client_p_ip4s,
+        $s25r_ip4s, $spamcop_ip4s,  $ptrcloud_ip4s,  $kagoya_ip4s,   $ssl_err_ip4s,
+    ) = extract_spam_sources($mlog_ary);
+    output_process(
+        $dt,            $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s,
+        $client_n_ip4s, $client_p_ip4s, $s25r_ip4s,     $spamcop_ip4s,
+        $ptrcloud_ip4s, $kagoya_ip4s,   $ssl_err_ip4s
+    );
+    if ($opt_test) {
+        my %json_map;
+        $json_map{'cfrh_ip4s'}      = $cfrh_ip4s;
+        $json_map{'unk_sasl_ip4s'}  = $unk_sasl_ip4s;
+        $json_map{'host_sasl_ip4s'} = $host_sasl_ip4s;
+        $json_map{'client_n_ip4s'}  = $client_n_ip4s;
+        $json_map{'client_p_ip4s'}  = $client_p_ip4s;
+        $json_map{'s25r_ip4s'}      = $s25r_ip4s;
+        $json_map{'spamcop_ip4s'}   = $spamcop_ip4s;
+        $json_map{'ptrcloud_ip4s'}  = $ptrcloud_ip4s;
+        $json_map{'kagoya_ip4s'}    = $kagoya_ip4s;
+        $json_map{'ssl_err_ip4s'}   = $ssl_err_ip4s;
+        output_json(\%json_map, "map.json");
+
+        #print "vmail input: $mock_send_command_vmail_get_cc_input\n";
+    }
 }
-
 exit 0;
 
 sub setup_test_mode {
@@ -378,7 +377,7 @@ sub output_net {
 sub output_json {
     my ($map, $file_path) = @_;
     my $json_txt = JSON::XS->new->ascii->pretty->canonical->encode($map);
-    open my $fh, '>', $file_path;
+    open my $fh, '>', $file_path or die "can not open file: $file_path [$!]";
     print $fh $json_txt;
     close $fh;
     return;
@@ -674,8 +673,26 @@ sub extract_spam_sources_ssl {
     }
     return;
 }
+__END__
 
+#
+# pflog-day-cfrh.pl
+#
+# depends:
+#   apt install libtest-mockmodule-perl
+#
+#   v0.6.2  2024/05/29  added: host_sasl: known_host: .pbiaas.com
+#   v0.6.1  2024/05/21  fixed: client_access_reject_cidr_today.
+#   v0.6.0  2024/05/21  added: SSL_accept error.
+#   v0.5.0  2024/05/20  added: spamcop.
+#   v0.4.0  2024/05/20  added: S25R.
+#   v0.3.1  2024/05/20  added: Named: some us domains.
+#   v0.3.0  2024/05/18  added: Named: client_p.
+#   v0.2.0  2024/05/02  refactoring full.
+#   v0.1.0  2024/05/01  first release.
+#
 # support on:
-#   perltidy -l 100 --check-syntax --paren-tightness=2
-#   perlcritic -4
+#   perltidy -b -l 100 --check-syntax --paren-tightness=2
+#   perlcritic -3 --verbose 9
+#
 # vim: set ts=4 sw=4 sts=0 expandtab:
