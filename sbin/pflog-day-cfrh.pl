@@ -16,7 +16,7 @@ use 5.028;
 use strict;
 use warnings;
 #
-my $version = '0.6.2';
+my $version = '0.6.3';
 #
 #---- configuration ----
 
@@ -92,6 +92,9 @@ MAIN: {
 }
 exit 0;
 
+##
+# @brief Sets up test mode by replacing file paths and mocking modules.
+# @returns None
 sub setup_test_mode {
     ## test mode
     ### replace test path
@@ -139,6 +142,10 @@ END
     return;
 }
 
+##
+# @brief Replaces the given file path with a test-specific path.
+# @param path_ref A reference to the file path to be replaced.
+# @returns None
 sub replace_test_path {
     my ($path_ref) = @_;
     if ($$path_ref =~ /^\/usr\/local\/(.+)$/) {
@@ -153,6 +160,11 @@ sub replace_test_path {
     return;
 }
 
+##
+# @brief Reads the current maillog and extracts log entries for a specific date.
+# @param mlog_path The path to the maillog file.
+# @param dt_path The path to the file containing the date information.
+# @returns A list reference to the mailog entries and the date string.
 sub read_curr_maillog {
     my ($mlog_path, $dt_path) = @_;
     my $dt = do {
@@ -172,6 +184,11 @@ sub read_curr_maillog {
     return (\@mlog_ary, $dt);
 }
 
+##
+# @brief Extracts log lines for a specific date from the given maillog file.
+# @param mlog The path to the maillog file.
+# @param dt The date string to extract.
+# @returns A list of extracted log lines.
 sub cut_day_on_mail_log {
     my ($mlog, $dt) = @_;
     open(my $fh, "<", $mlog) or croak "can not open file: '$mlog': $!";
@@ -180,6 +197,11 @@ sub cut_day_on_mail_log {
     return @ary;
 }
 
+##
+# @brief Internal loop function to read logs from a file handle and extract lines for a specific date.
+# @param fh The file handle to read from.
+# @param dt The date string to extract.
+# @returns A list of extracted log lines.
 sub cut_day_on_mail_log_loop {
     my ($fh, $dt) = @_;
     ## date format: '2025-04-27T01:43:16.317318+09:00'
@@ -200,6 +222,20 @@ sub cut_day_on_mail_log_loop {
     return @ary;
 }
 
+##
+# @brief Processes and outputs various IP address categories based on extracted spam sources.
+# @param dt The date string.
+# @param cfrh_ip4s Hash reference of IP addresses related to "Client host rejected: cannot find your hostname/reverse hostname".
+# @param unk_sasl_ip4s Hash reference of IP addresses from unknown hosts with SASL authentication failures.
+# @param host_sasl_ip4s Hash reference of IP addresses from known hosts with SASL authentication failures.
+# @param client_n_ip4s Hash reference of IP addresses related to "Client host rejected: Fishing SPAM" (network-based).
+# @param client_p_ip4s Hash reference of IP addresses related to "Client host rejected: Fishing SPAM" (provider-based).
+# @param s25r_ip4s Hash reference of IP addresses that failed S25R checks.
+# @param spamcop_ip4s Hash reference of IP addresses blocked by Spamcop.
+# @param ptrcloud_ip4s Hash reference of IP addresses related to ptrcloud.net.
+# @param kagoya_ip4s Hash reference of IP addresses related to vir.kagoya.net.
+# @param ssl_err_ip4s Hash reference of IP addresses with SSL errors.
+# @returns None
 sub output_process {
     my (
         $dt,            $cfrh_ip4s,     $unk_sasl_ip4s, $host_sasl_ip4s,
@@ -241,10 +277,20 @@ sub output_process {
     return;
 }
 
+##
+# @brief Sorts IPv4 addresses in ascending order based on their integer representation.
+# @param a The first IPv4 address for comparison.
+# @param b The second IPv4 address for comparison.
+# @returns The result of the numerical comparison.
 sub sort_ip4_host {
     return ip4_to_int($a) <=> ip4_to_int($b);
 }
 
+##
+# @brief Sorts CIDR-formatted IPv4 network addresses in ascending order.
+# @param a The first CIDR-formatted IPv4 address for comparison.
+# @param b The second CIDR-formatted IPv4 address for comparison.
+# @returns The result of the numerical comparison.
 sub sort_ip4_net {
     my @aa  = split(/\//, $a);
     my @bb  = split(/\//, $b);
@@ -260,11 +306,19 @@ sub sort_ip4_net {
     return $ret;
 }
 
+##
+# @brief Converts an IPv4 address string to a 32-bit unsigned integer.
+# @param ip4s The IPv4 address string.
+# @returns The converted integer value.
 sub ip4_to_int {
     my ($ip4s) = @_;
     return unpack("N", pack("C4", split(/\./, $ip4s)));
 }
 
+##
+# @brief Sends a list of IP addresses to a remote server to get country code information and saves it to a file.
+# @param ip4s A reference to an array of IP addresses.
+# @returns None
 sub send_command_vmail_get_cc {
     my ($ip4s) = @_;
     my $cmd =
@@ -279,6 +333,11 @@ sub send_command_vmail_get_cc {
     return;
 }
 
+##
+# @brief Processes and outputs IP addresses related to CFRH (Client host rejected: cannot find your hostname/reverse hostname).
+# @param dt The date string.
+# @param ip4s A reference to an array of IP addresses related to CFRH.
+# @returns None
 sub output_cfrh {
     my ($dt, $ip4s) = @_;
     send_command_vmail_get_cc($ip4s);
@@ -301,6 +360,12 @@ sub output_cfrh {
     return;
 }
 
+##
+# @brief Reads IP address and country code information from an input file handle, processes it, and writes to an output file handle.
+# @param inf The input file handle.
+# @param outf The output file handle.
+# @param dt The date string.
+# @returns The number of processed entries.
 sub convert_full {
     my ($inf, $outf, $dt) = @_;
     my %net_cc;
@@ -324,6 +389,10 @@ sub convert_full {
     return $cnt;
 }
 
+##
+# @brief Executes the fail2ban-client command to ban specified host IP addresses.
+# @param s The string containing IP addresses to ban.
+# @returns The output line from the fail2ban command.
 sub run_fail2ban_command_host {
     my ($s) = @_;
     my $cmd = "fail2ban-client set blocking-manual-host banip $s";
@@ -335,6 +404,11 @@ sub run_fail2ban_command_host {
     return $line;
 }
 
+##
+# @brief Passes a list of host IP addresses to fail2ban and prints the result.
+# @param label The label to display in the output.
+# @param ip4s A reference to an array of IP addresses.
+# @returns None
 sub output_host {
     my ($label, $ip4s) = @_;
     my $cnt = 0;
@@ -349,6 +423,10 @@ sub output_host {
     return;
 }
 
+##
+# @brief Executes the fail2ban-client command to ban specified network IP addresses.
+# @param s The string containing IP addresses to ban.
+# @returns The output line from the fail2ban command.
 sub run_fail2ban_command_net {
     my ($s) = @_;
     my $cmd = "fail2ban-client set blocking-manual banip $s";
@@ -360,6 +438,11 @@ sub run_fail2ban_command_net {
     return $line;
 }
 
+##
+# @brief Passes a list of network IP addresses to fail2ban and prints the result.
+# @param label The label to display in the output.
+# @param ip4s A reference to an array of IP addresses.
+# @returns None
 sub output_net {
     my ($label, $ip4s) = @_;
     my $cnt = 0;
@@ -374,6 +457,11 @@ sub output_net {
     return;
 }
 
+##
+# @brief Outputs a hash map to a file in JSON format.
+# @param map A reference to the hash map to output.
+# @param file_path The path to the output file.
+# @returns None
 sub output_json {
     my ($map, $file_path) = @_;
     my $json_txt = JSON::XS->new->ascii->pretty->canonical->encode($map);
@@ -383,6 +471,11 @@ sub output_json {
     return;
 }
 
+##
+# @brief Increments the value for a specified key in a hash map. Initializes the key to 0 if it doesn't exist.
+# @param map A reference to the hash map.
+# @param key The key to increment.
+# @returns None
 sub map_count_up {
     my ($map, $key) = @_;
     $map->{$key} = 0 unless $map->{$key};
@@ -390,6 +483,10 @@ sub map_count_up {
     return;
 }
 
+##
+# @brief Extracts spam source IP addresses from an array of maillog entries and categorizes them.
+# @param mlog_ary A reference to an array containing maillog lines.
+# @returns A list of hash references, each containing IP addresses for a specific category.
 sub extract_spam_sources {
     my ($mlog_ary) = @_;
     my %cfrh_ip4s;
@@ -428,6 +525,12 @@ sub extract_spam_sources {
     );
 }
 
+##
+# @brief Extracts spam source IP addresses related to SASL authentication failures from maillog warning entries.
+# @param rest The warning portion of the log line.
+# @param unk_sasl_ip4s A hash reference to store IP addresses from unknown hosts with SASL authentication failures.
+# @param host_sasl_ip4s A hash reference to store IP addresses from known hosts with SASL authentication failures.
+# @returns None
 sub extract_spam_sources_warning {
     my ($rest, $unk_sasl_ip4s, $host_sasl_ip4s) = @_;
     if ($rest =~ /^(\S+)\[(\d+\.\d+\.\d+\.\d+)\]: SASL (LOGIN|PLAIN) authentication failed:/) {
@@ -486,6 +589,17 @@ sub extract_spam_sources_warning {
     return;
 }
 
+##
+# @brief Extracts various spam source IP addresses from maillog reject entries.
+# @param rest The reject portion of the log line.
+# @param cfrh_ip4s A hash reference to store IP addresses related to "Client host rejected: cannot find your hostname/reverse hostname".
+# @param client_n_ip4s A hash reference to store IP addresses related to "Client host rejected: Fishing SPAM" (network-based).
+# @param client_p_ip4s A hash reference to store IP addresses related to "Client host rejected: Fishing SPAM" (provider-based).
+# @param s25r_ip4s A hash reference to store IP addresses that failed S25R checks.
+# @param spamcop_ip4s A hash reference to store IP addresses blocked by Spamcop.
+# @param ptrcloud_ip4s A hash reference to store IP addresses related to ptrcloud.net.
+# @param kagoya_ip4s A hash reference to store IP addresses related to vir.kagoya.net.
+# @returns None
 sub extract_spam_sources_reject {
     my ($rest, $cfrh_ip4s, $client_n_ip4s, $client_p_ip4s, $s25r_ip4s, $spamcop_ip4s,
         $ptrcloud_ip4s, $kagoya_ip4s)
@@ -551,6 +665,13 @@ sub extract_spam_sources_reject {
     return;
 }
 
+##
+# @brief Extracts IP addresses from logs related to "Client host rejected: Fishing SPAM" (provider-based).
+# @param host The hostname string.
+# @param ip4 The IP address string.
+# @param cc The country code string.
+# @param client_p_ip4s A hash reference to store client provider IP addresses.
+# @returns None
 sub extract_spam_sources_reject_client_p {
     my ($host, $ip4, $cc, $client_p_ip4s) = @_;
     if ($cc eq 'jp') {
@@ -639,6 +760,12 @@ sub extract_spam_sources_reject_client_p {
     return;
 }
 
+##
+# @brief Extracts IP addresses from logs related to S25R checks.
+# @param host The hostname string.
+# @param ip4 The IP address string.
+# @param s25r_ip4s A hash reference to store IP addresses that failed S25R checks.
+# @returns None
 sub extract_spam_sources_reject_s25r {
     my ($host, $ip4, $s25r_ip4s) = @_;
     if ($host =~ /\.(..)$/) {
@@ -653,6 +780,11 @@ sub extract_spam_sources_reject_s25r {
     return;
 }
 
+##
+# @brief Extracts spam source IP addresses from SSL_accept error logs.
+# @param rest The SSL error portion of the log line.
+# @param ssl_err_ip4s A hash reference to store IP addresses with SSL errors.
+# @returns None
 sub extract_spam_sources_ssl {
     my ($rest, $ssl_err_ip4s) = @_;
     if ($rest =~ /^([^\[\] ]+)\[(\d+\.\d+\.\d+\.\d+)\]: (.+)$/) {
@@ -681,6 +813,7 @@ __END__
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.6.3  2024/06/15  added: function comments.
 #   v0.6.2  2024/05/29  added: host_sasl: known_host: .pbiaas.com
 #   v0.6.1  2024/05/21  fixed: client_access_reject_cidr_today.
 #   v0.6.0  2024/05/21  added: SSL_accept error.
