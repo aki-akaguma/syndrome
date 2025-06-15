@@ -5,6 +5,7 @@
 # depends:
 #   apt install libtest-mockmodule-perl
 #
+#   v0.6.2  2024/05/29  added: host_sasl: known_host: .pbiaas.com
 #   v0.6.1  2024/05/21  fixed: client_access_reject_cidr_today.
 #   v0.6.0  2024/05/21  added: SSL_accept error.
 #   v0.5.0  2024/05/20  added: spamcop.
@@ -28,7 +29,7 @@ use v5.28;
 use strict;
 use warnings;
 #
-my $version = '0.6.1';
+my $version = '0.6.2';
 #
 our $DT_PATH   = "/usr/local/etc/pflog-hour-date.txt";
 our $MAIL_LOG  = "/var/log/mail.log";
@@ -448,6 +449,7 @@ sub extract_spam_sources_warning {
                 qr/\.myvzw\.com$/,
                 qr/\.rcncustomer\.com$/,    # cable.rcncustomer.com ftth.rcncustomer.com
                 qr/\.telus\.com$/,          # cidc.telus.com wireless.telus.com
+                qr/\.pbiaas\.com$/,         # ip217.154.199-200.pbiaas.com
             );
             foreach my $re (@known_host_patterns_com) {
                 if ($host =~ $re) {
